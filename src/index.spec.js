@@ -11,39 +11,39 @@ test('set', (assert) => {
   assert.plan(6);
 
   assert.deepEqual(
-    ({ damogran: 5 })::set('zaphod', 'beeblebrox'),
+    set(({ damogran: 5 }), 'zaphod', 'beeblebrox'),
     { damogran: 5, zaphod: 'beeblebrox' },
     'should set a new key/value in an object'
   );
 
   assert.deepEqual(
-    ({ damogran: 4 })::set('damogran', 5),
+    set(({ damogran: 4 }), 'damogran', 5),
     { damogran: 5 },
     'should overwrite existing key'
   );
 
   assert.deepEqual(
-    undefined::set('damogran', 5),
+    set(undefined, 'damogran', 5),
     { damogran: 5 },
     'should return fresh object if called on undefined'
   );
 
   const computer = { deep: 'thought' };
   assert.is(
-    computer::set('deep', 'thought'),
+    set(computer, 'deep', 'thought'),
     computer,
     'should return original object when key/value will not change'
   );
 
   const arthur = { name: 'dent' };
   assert.not(
-    arthur::set('age', 34),
+    set(arthur, 'age', 34),
     arthur,
     'should not mutate original object'
   );
 
   assert.deepEqual(
-    [42, 42, 42]::set(0, 5),
+    set([42, 42, 42], 0, 5),
     [5, 42, 42],
     'should work with arrays too'
   );
@@ -53,61 +53,61 @@ test('setIn', (assert) => {
   assert.plan(10);
 
   assert.throws(
-    () => ({})::setIn(2),
+    () => setIn({}, 2),
     TypeError,
     'should throw for non-array path'
   );
 
   assert.deepEquals(
-    ({ trisha: { mc: 'millan' }})::setIn(['trisha', 'mc'], 4),
+    setIn(({ trisha: { mc: 'millan' }}), ['trisha', 'mc'], 4),
     ({ trisha: { mc: 4 }}),
     'should update nested property'
   );
 
   assert.deepEqual(
-    [1, [2], 3]::setIn([1, 0], 'a'),
+    setIn([1, [2], 3], [1, 0], 'a'),
     [1, ['a'], 3],
     'should work with arrays'
   );
 
   const earth = { harmless: true };
   assert.not(
-    earth::setIn(['harmless'], 'mostly'),
+    setIn(earth, ['harmless'], 'mostly'),
     earth,
     'should not mutate original reference'
   );
 
   assert.is(
-    earth::setIn([]),
+    setIn(earth, []),
     earth,
     'should return original reference for empty key array'
   );
 
   assert.deepEquals(
-    ({})::setIn(['guide', 'to', 'the'], 'galaxy'),
+    setIn(({}), ['guide', 'to', 'the'], 'galaxy'),
     ({ guide: { to: { the: 'galaxy' }}}),
     'should create the path if its not there'
   );
 
   assert.deepEquals(
-    ({ guide: null })::setIn(['guide', 'to', 'the'], 'galaxy'),
+    setIn(({ guide: null }), ['guide', 'to', 'the'], 'galaxy'),
     ({ guide: { to: { the: 'galaxy' }}}),
     'should create the path if it finds a null'
   );
 
   assert.deepEquals(
-    ({ guide: undefined })::setIn(['guide', 'to', 'the'], 'galaxy'),
+    setIn(({ guide: undefined }), ['guide', 'to', 'the'], 'galaxy'),
     ({ guide: { to: { the: 'galaxy' }}}),
     'should create the path if it finds an undefined'
   );
 
   assert.ok(
-    Array.isArray(({})::setIn(['lucky', 0], 'galaxy').lucky),
+    Array.isArray(setIn(({}), ['lucky', 0], 'galaxy').lucky),
     'should create arrays for numerical indexes'
   );
 
   assert.deepEquals(
-    undefined::setIn(['guide', 'to', 'the'], 'galaxy'),
+    setIn(undefined, ['guide', 'to', 'the'], 'galaxy'),
     ({ guide: { to: { the: 'galaxy' }}}),
     'should create whole path if called on undefined'
   );
@@ -118,32 +118,32 @@ test('unset', (assert) => {
 
   const jeltz = { vogon: 'captain' };
   assert.is(
-    jeltz::unset('poetry'),
+    unset(jeltz, 'poetry'),
     jeltz,
     'should return original object when key does not exist'
   );
 
   assert.deepEqual(
-    undefined::unset('poetry'),
+    unset(undefined, 'poetry'),
     {},
     'should return empty object when called on undefined'
   );
 
   assert.deepEqual(
-    ({ damogran: 5, zaphod: 'beeb' })::unset('zaphod'),
+    unset(({ damogran: 5, zaphod: 'beeb' }), 'zaphod'),
     { damogran: 5 },
     'should unset a key from an object'
   );
 
   const arthur = { name: 'dent' };
   assert.not(
-    arthur::unset('name'),
+    unset(arthur, 'name'),
     arthur,
     'should not mutate original object'
   );
 
   assert.not(
-    ['pan', 'galactic', 'gargle', 'blaster']::unset(0),
+    unset(['pan', 'galactic', 'gargle', 'blaster'], 0),
     [ , 'galactic', 'gargle', 'blaster'],
     'should work with arrays too'
   );
@@ -153,44 +153,44 @@ test('get', (assert) => {
   assert.plan(7);
 
   assert.is(
-    ({ paranoid: 'android' })::get('paranoid'),
+    get(({ paranoid: 'android' }), 'paranoid'),
     'android',
     'should return the value for the key'
   );
 
   assert.is(
-    ['life', 'universe', 'everything']::get(0),
+    get(['life', 'universe', 'everything'], 0),
     'life',
     'should also work with arrays'
   );
 
   assert.is(
-    'zaphod'::get(0),
+    get('zaphod', 0),
     'z',
     'should also work with strings'
   );
 
   assert.is(
-    ({})::get('jeltz', 4),
+    get(({}), 'jeltz', 4),
     4,
     'should return notFound value for missing key'
   );
 
   assert.is(
-    ({ jeltz: undefined })::get('jeltz', 4),
+    get(({ jeltz: undefined }), 'jeltz', 4),
     4,
     'should return notFound value for undefined keys'
   );
 
   const marvin = Object.create({ type: 'android' });
   assert.is(
-    marvin::get('type'),
+    get(marvin, 'type'),
     'android',
     'should work for properties on the protoype chain'
   );
 
   assert.is(
-    undefined::get('meaning', 42),
+    get(undefined, 'meaning', 42),
     42,
     'should return notFound when called on undefined'
   );
@@ -200,49 +200,49 @@ test('getIn', (assert) => {
   assert.plan(8);
 
   assert.throws(
-    () => ({})::getIn(2),
+    () => getIn(({}), 2),
     TypeError,
     'should throw for non-array keys'
   );
 
   assert.is(
-    ({ bee: { ble: 'brox' } })::getIn(['bee', 'ble']),
+    getIn(({ bee: { ble: 'brox' } }), ['bee', 'ble']),
     'brox',
     'should get nested key'
   );
 
   assert.is(
-    ({ bee: ['ble', 'brox'] })::getIn(['bee', 1, 2]),
+    getIn(({ bee: ['ble', 'brox'] }), ['bee', 1, 2]),
     'o',
     'should work in mixed type collections'
   );
 
   assert.is(
-    ({ beeble: 'brox' })::getIn(['bobble'], 'brix'),
+    getIn(({ beeble: 'brox' }) ,['bobble'], 'brix'),
     'brix',
     'should use notFound if top-level key does not exist'
   );
 
   assert.is(
-    ({ bee: { ble: 'brox' } })::getIn(['bee', 'bee'], 'zaphod'),
+    getIn(({ bee: { ble: 'brox' } }), ['bee', 'bee'], 'zaphod'),
     'zaphod',
     'should use notFound if nested key does not exist'
   );
 
   assert.is(
-    ({ beeble: undefined })::getIn(['beeble'], 'betelgeuse'),
+    getIn(({ beeble: undefined }), ['beeble'], 'betelgeuse'),
     'betelgeuse',
     'should use notFound if value is undefined'
   );
 
   assert.is(
-    ({ beeble: undefined })::getIn([], 'betelgeuse'),
+    getIn(({ beeble: undefined }), [], 'betelgeuse'),
     'betelgeuse',
     'should use notFound if passed empty array of keys'
   );
 
   assert.is(
-    undefined::getIn(['meaning'], 42),
+    getIn(undefined, ['meaning'], 42),
     42,
     'should return notFound when called on undefined'
   );
@@ -254,7 +254,7 @@ test('update', (assert) => {
   const inc = n => n + 1;
 
   assert.deepEquals(
-    ({ life: 41 })::update('life', inc),
+    update(({ life: 41 }), 'life', inc),
     ({ life: 42 }),
     'should apply func to value at key'
   );
@@ -262,13 +262,13 @@ test('update', (assert) => {
   const add = (a, b) => a + b;
 
   assert.deepEquals(
-    ({ life: 2 })::update('life', add, 40),
+    update(({ life: 2 }), 'life', add, 40),
     ({ life: 42 }),
     'should apply with any additional arguments'
   );
 
   assert.deepEquals(
-    ({ life: 2 })::update('death', undefined),
+    update(({ life: 2 }), 'death', undefined),
     ({ life: 2, death: undefined }),
     'should set value to undefined when func is missing'
   );
@@ -278,7 +278,7 @@ test('updateIn', (assert) => {
   assert.plan(5);
 
   assert.throws(
-    () => ({})::updateIn(2),
+    () => updateIn(({}), 2),
     TypeError,
     'should throw for non-array path'
   );
@@ -286,13 +286,13 @@ test('updateIn', (assert) => {
   const inc = n => n + 1;
 
   assert.deepEquals(
-    ({ a: { b: 3 }})::updateIn(['a', 'b'], inc),
+    updateIn(({ a: { b: 3 }}), ['a', 'b'], inc),
     ({ a: { b: 4 }}),
     'should apply func to nested value'
   );
 
   assert.deepEquals(
-    ({})::updateIn(['a', 'b'], () => 3),
+    updateIn(({}), ['a', 'b'], () => 3),
     ({ a: { b: 3 }}),
     'should create path if it not there'
   );
@@ -300,13 +300,13 @@ test('updateIn', (assert) => {
   const add = (a, b) => a + b;
 
   assert.deepEquals(
-    ({ state: { count: 2 } })::updateIn(['state', 'count'], add, 40),
+    updateIn(({ state: { count: 2 } }), ['state', 'count'], add, 40),
     ({ state: { count: 42 } }),
     'should apply with any additional arguments'
   );
 
   assert.deepEquals(
-    ({ count: 2 })::update('score', undefined),
+    update(({ count: 2 }), 'score', undefined),
     ({ count: 2, score: undefined }),
     'should set value to undefined when func is missing'
   );
@@ -316,20 +316,20 @@ test('merge', (assert) => {
   assert.plan(3);
 
   assert.deepEquals(
-    ({ a: 1 })::merge({ b: 2 }, { c: 3 }),
+    merge(({ a: 1 }), { b: 2 }, { c: 3 }),
     ({ a: 1, b: 2, c: 3 }),
     'should merge together multiple objects'
   );
 
   const foo = { a: 1 };
   assert.not(
-    foo::merge({ b: 2 }),
+    merge(foo, { b: 2 }),
     foo,
     'should not mutate original reference'
   );
 
   assert.deepEquals(
-    ({ a: 1 })::merge(null, { b: 2 }, undefined),
+    merge(({ a: 1 }), null, { b: 2 }, undefined),
     ({ a: 1, b: 2 }),
     'should silently ignore falsy values'
   );
@@ -339,31 +339,31 @@ test('keys', (assert) => {
   assert.plan(5);
 
   assert.deepEquals(
-    ({ arthur: 'd', ford: 'p', zaphod: 'b' })::keys(),
+    keys(({ arthur: 'd', ford: 'p', zaphod: 'b' })),
     ['arthur', 'ford', 'zaphod'],
     'should return keys for an object'
   );
 
   assert.deepEquals(
-    ['arthur', 'ford', 'zaphod']::keys(),
+    keys(['arthur', 'ford', 'zaphod']),
     ['0', '1', '2'],
     'should return indices for an array'
   );
 
   assert.deepEquals(
-    'zaphod'::keys(),
+    keys('zaphod'),
     ['0', '1', '2', '3', '4', '5'],
     'should work with strings'
   );
 
   assert.deepEquals(
-    undefined::keys(),
+    keys(undefined),
     [],
     'should return empty array for undefined'
   );
 
   assert.deepEquals(
-    null::keys(),
+    keys(null),
     [],
     'should return empty array for null'
   );
@@ -373,26 +373,26 @@ test('vals', (assert) => {
   assert.plan(4);
 
   assert.deepEquals(
-    ({ arthur: 'd', ford: 'p', zaphod: 'b' })::vals(),
+    vals(({ arthur: 'd', ford: 'p', zaphod: 'b' })),
     ['d', 'p', 'b'],
     'should return vals for an object'
   );
 
   const xs = ['trillian', 'marvin', 'eddie'];
   assert.is(
-    xs::vals(),
+    vals(xs),
     xs,
     'should return original reference for an array'
   );
 
   assert.deepEquals(
-    'zaphod'::vals(),
+    vals('zaphod'),
     ['z', 'a', 'p', 'h', 'o', 'd'],
     'should work with strings'
   );
 
   assert.deepEquals(
-    undefined::vals(),
+    vals(undefined),
     [],
     'should return empty array for undefined'
   );
@@ -402,37 +402,37 @@ test('size', (assert) => {
   assert.plan(6);
 
   assert.is(
-    ['ursa', 'minor', 'beta']::size(),
+    size(['ursa', 'minor', 'beta']),
     3,
     'should get size from array types'
   );
 
   assert.is(
-    null::size(),
+    size(null),
     0,
     'should treat null as an empty object'
   );
 
   assert.is(
-    undefined::size(),
+    size(undefined),
     0,
     'should treat undefined as an empty object'
   );
 
   assert.is(
-    ({ name: 'Trillian' })::size(),
+    size(({ name: 'Trillian' })),
     1,
     'should get key count from objects'
   );
 
   assert.is(
-    'megadodo'::size(),
+    size('megadodo'),
     8,
     'should work with strings'
   );
 
   assert.is(
-    ({ length: 6 })::size(),
+    size(({ length: 6 })),
     1,
     'should not be tripped up by array-likes'
   );
@@ -442,37 +442,37 @@ test('equals', (assert) => {
   assert.plan(15);
 
   assert.ok(
-    (2)::equals(2),
+    equals(2, 2),
     'should find equality between primitives'
   );
 
   assert.notOk(
-    (2)::equals(3),
+    equals(2, 3),
     'should not find equality between different primitives'
   );
 
   assert.notOk(
-    (2)::equals('2'),
+    equals(2, '2'),
     'should only use strict equality'
   );
 
   assert.notOk(
-    (false)::equals(0),
+    equals(false, 0),
     'should not find disparate falsy types to be equal'
   );
 
   assert.notOk(
-    (true)::equals(1),
+    equals(true, 1),
     'should not find disparate truthy types to be equal'
   );
 
   assert.ok(
-    ({ a: 1, b: 2 })::equals({ a: 1, b: 2 }),
+    equals({ a: 1, b: 2 }, { a: 1, b: 2 }),
     'should find equality between objects'
   );
 
   assert.ok(
-    ([1, 2, 3])::equals([1, 2, 3]),
+    equals([1, 2, 3], [1, 2, 3]),
     'should find equality between arrays'
   );
 
@@ -481,42 +481,42 @@ test('equals', (assert) => {
   const d3 = new Date();
 
   assert.ok(
-    d1::equals(d2),
+    equals(d1, d2),
     'should find equality between dates'
   );
 
   assert.notOk(
-    d1::equals(d3),
+    equals(d1, d3),
     'should not find false positives with dates'
   );
 
   assert.ok(
-    /hello/::equals(/hello/),
+    equals(/hello/, /hello/),
     'should find equality between regexes'
   );
 
   assert.notOk(
-    /hello/::equals(/hollo/),
+    equals(/hello/, /hollo/),
     'should not find equality between false regexes'
   );
 
   assert.ok(
-    (NaN)::equals(NaN),
+    equals(NaN, NaN),
     'should find equality between NaNs'
   );
 
   assert.notOk(
-    ({ a: 1, b: 2 })::equals({ a: 1 }),
+    equals({ a: 1, b: 2 }, { a: 1 }),
     'should not find equality between objects with different keys'
   );
 
   assert.notOk(
-    ({ a: 1 })::equals({ a: 2 }),
+    equals({ a: 1 }, { a: 2 }),
     'should not find equality between objects with different props'
   );
 
   assert.ok(
-    ({ a: { b: [d1, NaN, true] } })::equals({ a: { b: [d1, NaN, true] } }),
+    equals({ a: { b: [d1, NaN, true] } }, { a: { b: [d1, NaN, true] } }),
     'should find equality between deep structures'
   );
 });
@@ -525,26 +525,26 @@ test('push', (assert) => {
   assert.plan(4);
 
   assert.throws(
-    () => false::push(3),
+    () => push(false, 3),
     TypeError,
     'should throw when called on non-array type'
   );
 
   assert.deepEquals(
-    [1, 2]::push(3),
+    push([1, 2], 3),
     [1, 2, 3],
     'should be able to push onto end of array'
   );
 
   assert.deepEquals(
-    [1]::push(2, 3),
+    push([1], 2, 3),
     [1, 2, 3],
     'should be able to push multiple values'
   );
 
   const xs = [1, 2, 3];
   assert.not(
-    xs::push(4),
+    push(xs, 4),
     xs,
     'should not mutate reference'
   );
@@ -554,25 +554,25 @@ test('first', (assert) => {
   assert.plan(4);
 
   assert.is(
-    [1, 2, 3]::first(),
+    first([1, 2, 3]),
     1,
     'should get first item from array'
   );
 
   assert.is(
-    ({ 0: 1, 1: 2, 2: 3 })::first(),
+    first({ 0: 1, 1: 2, 2: 3 }),
     1,
     'should work with array-likes'
   );
 
   assert.is(
-    []::first(),
+    first([]),
     undefined,
     'should return undefined for empty list'
   );
 
   assert.is(
-    undefined::first(),
+    first(undefined),
     undefined,
     'should return undefined when called on undefined'
   );
@@ -582,31 +582,31 @@ test('rest', (assert) => {
   assert.plan(5);
 
   assert.throws(
-    () => false::rest(),
+    () => rest(false),
     TypeError,
     'should throw when called on non-array type'
   );
 
   assert.deepEquals(
-    [1, 2, 3]::rest(),
+    rest([1, 2, 3]),
     [2, 3],
     'should get subsequent items from array'
   );
 
   assert.deepEquals(
-    []::rest(),
+    rest([]),
     [],
     'should return empty list for empty list'
   );
 
   assert.deepEquals(
-    [1]::rest(),
+    rest([1]),
     [],
     'should return empty list for one element list'
   );
 
   assert.deepEquals(
-    undefined::rest(),
+    rest(undefined),
     [],
     'should return empty list when called on undefined'
   );
@@ -616,31 +616,31 @@ test('flatten', (assert) => {
   assert.plan(5);
 
   assert.deepEquals(
-    [1, 2, 3, 4]::flatten(),
+    flatten([1, 2, 3, 4]),
     [1, 2, 3, 4],
     'should not affect flat lists'
   );
 
   assert.deepEquals(
-    [1, [2, 3], 4]::flatten(),
+    flatten([1, [2, 3], 4]),
     [1, 2, 3, 4],
     'should flatten nested vectors in order'
   );
 
   assert.deepEquals(
-    [1, [[2], [[3], 4]]]::flatten(),
+    flatten([1, [[2], [[3], 4]]]),
     [1, 2, 3, 4],
     'should flatten deep nested vectors in order'
   );
 
   assert.deepEqual(
-    undefined::flatten(),
+    flatten(undefined),
     [],
     'should return empty array when flattening undefined'
   );
 
   assert.throws(
-    () => ({ })::flatten(),
+    () => flatten(({ })),
     TypeError,
     'should throw on attempt to flatten non-array'
   );
@@ -650,19 +650,19 @@ test('distinct', (assert) => {
   assert.plan(3);
 
   assert.throws(
-    () => 5::distinct(),
+    () => distinct(5),
     TypeError,
     'should throw when called on non-array'
   );
 
   assert.deepEquals(
-    [1, 2, 2, 3, 4]::distinct(),
+    distinct([1, 2, 2, 3, 4]),
     [1, 2, 3, 4],
     'should remove all duplicate values'
   );
 
   assert.deepEquals(
-    undefined::distinct(),
+    distinct(undefined),
     [],
     'should return empty array when called on undefined'
   );
@@ -672,7 +672,7 @@ test('groupBy', (assert) => {
   assert.plan(1);
 
   assert.deepEquals(
-    ['arthur', 'ford', 'zaphod', 'trillian']::groupBy(str => str[0]),
+    groupBy(['arthur', 'ford', 'zaphod', 'trillian'], str => str[0]),
     { a: ['arthur'], f: ['ford'], z: ['zaphod'], t: ['trillian'] },
     'should group items by a given key'
   );
@@ -682,13 +682,13 @@ test('interpose', (assert) => {
   assert.plan(2);
 
   assert.deepEquals(
-    [1, 2, 3]::interpose(0),
+    interpose([1, 2, 3], 0),
     [1, 0, 2, 0, 3],
     'should interpose separator between vals in coll'
   );
 
   assert.deepEquals(
-    [1]::interpose(0),
+    interpose([1], 0),
     [1],
     'should have no effect on length 1 arrays'
   );
@@ -698,37 +698,37 @@ test('isEmpty', (assert) => {
   assert.plan(7);
 
   assert.ok(
-    []::isEmpty(),
+    isEmpty([]),
     'should recognize empty array as empty'
   );
 
   assert.notOk(
-    [1, 2]::isEmpty(),
+    isEmpty([1, 2]),
     'should not recognize filled array as empty'
   );
 
   assert.ok(
-    ({})::isEmpty(),
+    isEmpty({}),
     'should recognize empty object as empty'
   );
 
   assert.notOk(
-    ({ a: 1 })::isEmpty(),
+    isEmpty({ a: 1 }),
     'should not recognize keyed object as empty'
   );
 
   assert.ok(
-    ''::isEmpty(),
+    isEmpty(''),
     'should recognize empty string as empty'
   );
 
   assert.notOk(
-    'viscinity'::isEmpty(),
+    isEmpty('viscinity'),
     'should not recognize filled string as empty'
   );
 
   assert.notOk(
-    ({ length: 3 })::isEmpty(),
+    isEmpty({ length: 3 }),
     'should not be tricked by array-likes'
   );
 });
@@ -737,19 +737,19 @@ test('peek', (assert) => {
   assert.plan(3);
 
   assert.is(
-    [1, 2, 3]::peek(),
+    peek([1, 2, 3]),
     3,
     'should return final array element'
   );
 
   assert.is(
-    []::peek(),
+    peek([]),
     undefined,
     'should return undefined for empty array'
   );
 
   assert.is(
-    [1]::peek(),
+    peek([1]),
     1,
     'should return only element for 1-length array'
   );
@@ -759,26 +759,26 @@ test('pop', (assert) => {
   assert.plan(4);
 
   assert.deepEquals(
-    [1, 2, 3]::pop(),
+    pop([1, 2, 3]),
     [1, 2],
     'should remove final element from array'
   );
 
   const xs = [1, 2, 3];
   assert.not(
-    xs::pop(),
+    pop(xs),
     xs,
     'should not mutate original array'
   );
 
   assert.throws(
-    () => 5::pop(),
+    () => pop(5),
     TypeError,
     'should throw when called on non-array'
   );
 
   assert.is(
-    undefined::pop(),
+    pop(undefined),
     undefined,
     'should return undefined when called on undefined'
   );
@@ -788,26 +788,26 @@ test('reverse', (assert) => {
   assert.plan(4);
 
   assert.throws(
-    () => 4::reverse(),
+    () => reverse(4),
     TypeError,
     'should throw when called on non-array'
   );
 
   assert.deepEquals(
-    [1, 2, 3]::reverse(),
+    reverse([1, 2, 3]),
     [3, 2, 1],
     'should reverse array'
   );
 
   const xs = [1, 2, 3];
   assert.not(
-    xs::reverse(),
+    reverse(xs),
     xs,
     'should not mutate original array'
   );
 
   assert.deepEquals(
-    undefined::reverse(),
+    reverse(undefined),
     [],
     'should return empty array when called on undefined'
   );
@@ -817,32 +817,32 @@ test('sort', (assert) => {
   assert.plan(5);
 
   assert.throws(
-    () => 4::sort(),
+    () => sort(4),
     TypeError,
     'should throw when called on non-array'
   );
 
   assert.deepEquals(
-    [3, 2, 1]::sort(),
+    sort([3, 2, 1]),
     [1, 2, 3],
     'should sort array'
   );
 
   const xs = [2, 1, 3];
   assert.not(
-    xs::sort(),
+    sort(xs),
     xs,
     'should not mutate original array'
   );
 
   assert.deepEquals(
-    [1, 2, 3]::sort((a, b) => b - a),
+    sort([1, 2, 3], (a, b) => b - a),
     [3, 2, 1],
     'should allow custom compare function'
   );
 
   assert.deepEquals(
-    undefined::sort((a, b) => b - a),
+    sort(undefined, (a, b) => b - a),
     [],
     'should return empty array when called on undefined'
   );
@@ -852,31 +852,31 @@ test('take', (assert) => {
   assert.plan(5);
 
   assert.throws(
-    () => [1, 2, 3]::take(false),
+    () => take([1, 2, 3], false),
     TypeError,
     'should throw if called with non-numeric value for n'
   );
 
   assert.throws(
-    () => 4::take(10),
+    () => take(4, 10),
     TypeError,
     'should throw if called on non-array'
   );
 
   assert.deepEquals(
-    [1, 2, 3]::take(1),
+    take([1, 2, 3], 1),
     [1],
     'should take items from start of array'
   );
 
   assert.deepEquals(
-    []::take(2),
+    take([], 2),
     [],
     'should return empty array when taking from empty array'
   );
 
   assert.deepEquals(
-    undefined::take(1),
+    take(undefined, 1),
     [],
     'should return empty array if called on undefined'
   );
@@ -886,7 +886,7 @@ test('takeWhile', (assert) => {
   assert.plan(6);
 
   assert.throws(
-    () => [1, 2, 3]::takeWhile(false),
+    () => takeWhile([1, 2, 3], false),
     TypeError,
     'should throw if called with non-function value for func'
   );
@@ -894,31 +894,31 @@ test('takeWhile', (assert) => {
   const odd = n => (n % 2 !== 0);
 
   assert.throws(
-    () => 4::takeWhile(odd),
+    () => takeWhile(4, odd),
     TypeError,
     'should throw if called on non-array'
   );
 
   assert.deepEquals(
-    [1, 3, 5, 6]::takeWhile(odd),
+    takeWhile([1, 3, 5, 6], odd),
     [1, 3, 5],
     'should take predicated values'
   );
 
   assert.deepEquals(
-    []::takeWhile(odd),
+    takeWhile([], odd),
     [],
     'should return empty array for takeWhile on empty array'
   );
 
   assert.deepEquals(
-    undefined::takeWhile(odd),
+    takeWhile(undefined, odd),
     [],
     'should return empty array when called on undefined'
   );
 
   assert.deepEquals(
-    [1, 2, 3, 4, 5, 6]::takeWhile(n => n < 10),
+    takeWhile([1, 2, 3, 4, 5, 6], n => n < 10),
     [1, 2, 3, 4, 5, 6],
     'should not continue indefinitely'
   );
@@ -928,31 +928,31 @@ test('drop', (assert) => {
   assert.plan(5);
 
   assert.throws(
-    () => [1, 2, 3]::drop(false),
+    () => drop([1, 2, 3], false),
     TypeError,
     'should throw if called with non-numeric value for n'
   );
 
   assert.throws(
-    () => 4::drop(10),
+    () => drop(4, 10),
     TypeError,
     'should throw if called on non-array'
   );
 
   assert.deepEquals(
-    [1, 2, 3]::drop(2),
+    drop([1, 2, 3], 2),
     [3],
     'should drop items from the start of the array'
   );
 
   assert.deepEquals(
-    []::drop(5),
+    drop([], 5),
     [],
     'should return empty array for drop on empty array'
   );
 
   assert.deepEquals(
-    undefined::drop(5),
+    drop(undefined, 5),
     [],
     'should return empty array when called on undefined'
   );
@@ -962,7 +962,7 @@ test('dropWhile', (assert) => {
   assert.plan(6);
 
   assert.throws(
-    () => [1, 2, 3]::dropWhile(false),
+    () => dropWhile([1, 2, 3], false),
     TypeError,
     'should throw if called with non-function value for func'
   );
@@ -970,31 +970,31 @@ test('dropWhile', (assert) => {
   const odd = n => (n % 2 !== 0);
 
   assert.throws(
-    () => 4::dropWhile(odd),
+    () => dropWhile(4, odd),
     TypeError,
     'should throw if called on non-array'
   );
 
   assert.deepEquals(
-    [1, 3, 5, 6]::dropWhile(odd),
+    dropWhile([1, 3, 5, 6], odd),
     [6],
     'should drop predicated values'
   );
 
   assert.deepEquals(
-    []::dropWhile(odd),
+    dropWhile([], odd),
     [],
     'should return empty array for dropWhile on empty array'
   );
 
   assert.deepEquals(
-    undefined::dropWhile(odd),
+    dropWhile(undefined, odd),
     [],
     'should return empty array when called on undefined'
   );
 
   assert.deepEquals(
-    [1, 2, 3, 4, 5, 6]::dropWhile(n => n < 10),
+    dropWhile([1, 2, 3, 4, 5, 6], n => n < 10),
     [],
     'should not continue indefinitely'
   );
@@ -1007,37 +1007,37 @@ test('zip', (assert) => {
   const vs = [1, 2, 3];
 
   assert.deepEqual(
-    ks::zip(vs),
+    zip(ks, vs),
     { a: 1, b: 2, c: 3 },
     'should zip together keys and values'
   );
 
   assert.deepEqual(
-    ['a', 'b', 'c']::zip([1, 2, 3, 4]),
+    zip(['a', 'b', 'c'], [1, 2, 3, 4]),
     { a: 1, b: 2, c: 3 },
     'should ignore values without keys'
   );
 
   assert.deepEqual(
-    ['a', 'b']::zip([1, 2, 3]),
+    zip(['a', 'b'], [1, 2, 3]),
     { a: 1, b: 2 },
     'should ignore keys without values'
   );
 
   assert.deepEqual(
-    ['a', 'b']::zip([undefined, 2, 3]),
+    zip(['a', 'b'], [undefined, 2, 3]),
     { b: 2 },
     'should ignore keys with undefined values'
   );
 
   assert.deepEqual(
-    undefined::zip([undefined, 2, 3]),
+    zip(undefined, [undefined, 2, 3]),
     {},
     'should return empty object if keys are undefined'
   );
 
   assert.deepEqual(
-    ['a', 'b']::zip(undefined),
+    zip(['a', 'b'], undefined),
     {},
     'should return empty object if vals are undefined'
   );
@@ -1166,7 +1166,7 @@ test('transient', (assert) => {
   const marvin = { paranoid: true };
 
   assert.deepEquals(
-    marvin::transient(android => {
+    transient(marvin, android => {
       android.paranoid = false;
     }),
     { paranoid: false },
@@ -1174,7 +1174,7 @@ test('transient', (assert) => {
   );
 
   assert.not(
-    marvin::transient(android => {
+    transient(marvin, android => {
       android.paranoid = false;
     }),
     marvin,

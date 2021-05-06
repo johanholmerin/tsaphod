@@ -17,32 +17,32 @@ function copy(object) {
   return clone;
 }
 
-export function set(key, value) {
-  if(this == undefined) {
+export function set(that, key, value) {
+  if(that == undefined) {
     return { [key]: value };
   }
 
   // cheap return if key is already set
-  if(this[key] === value) {
-    return this;
+  if(that[key] === value) {
+    return that;
   }
 
-  const clone = copy(this);
+  const clone = copy(that);
   clone[key] = value;
   return clone;
 }
 
-export function setIn(keys, value) {
+export function setIn(that, keys, value) {
   if(!(keys instanceof Array)) {
     throw new TypeError(`setIn expected first argument to be an Array of keys. Not a ${type(keys)}! ${docs}/setIn`);
   }
 
   if(keys.length === 0) {
-    return this;
+    return that;
   }
 
-  const isNil = this == undefined;
-  const clone = isNil ? {} : copy(this);
+  const isNil = that == undefined;
+  const clone = isNil ? {} : copy(that);
 
   let ref = clone;
   let index = 0;
@@ -67,34 +67,34 @@ export function setIn(keys, value) {
   return clone;
 }
 
-export function unset(key) {
-  if(this == undefined) {
+export function unset(that, key) {
+  if(that == undefined) {
     return {};
   }
 
   // forgiving return for removing missing key
-  if(!this.hasOwnProperty(key)) {
-    return this;
+  if(!that.hasOwnProperty(key)) {
+    return that;
   }
 
-  const clone = copy(this);
+  const clone = copy(that);
   delete clone[key];
   return clone;
 }
 
-export function get(key, notFound) {
-  if(this == undefined) {
+export function get(that, key, notFound) {
+  if(that == undefined) {
     return notFound;
   }
 
-  if(this[key] !== undefined) {
-    return this[key];
+  if(that[key] !== undefined) {
+    return that[key];
   } else {
     return notFound;
   }
 }
 
-export function getIn(keys, notFound) {
+export function getIn(that, keys, notFound) {
   if(!(keys instanceof Array)) {
     throw new TypeError(`getIn expected first argument to be an Array of keys. Not a ${type(keys)}! ${docs}/getIn`)
   }
@@ -103,11 +103,11 @@ export function getIn(keys, notFound) {
     return notFound;
   }
 
-  if(this == undefined) {
+  if(that == undefined) {
     return notFound;
   }
 
-  let ref = this;
+  let ref = that;
   let index = 0
 
   while(index < keys.length) {
@@ -125,8 +125,8 @@ export function getIn(keys, notFound) {
   return ref;
 }
 
-export function update(key, func, ...args) {
-  const clone = copy(this);
+export function update(that, key, func, ...args) {
+  const clone = copy(that);
   const val = clone[key];
 
   if(func == undefined) {
@@ -138,94 +138,94 @@ export function update(key, func, ...args) {
   return clone;
 }
 
-export function updateIn(keys, func, ...args) {
+export function updateIn(that, keys, func, ...args) {
   if(!(keys instanceof Array)) {
     throw new TypeError(`updateIn expected first argument to be an Array of keys. Not a ${type(keys)}! ${docs}/updateIn`);
   }
 
-  const current = this::getIn(keys);
+  const current = getIn(that, keys);
   const updated =
     (func == undefined)
       ? undefined
       : func(current, ...args);
 
-  return this::setIn(keys, updated);
+  return setIn(that, keys, updated);
 }
 
-export function merge(...objects) {
+export function merge(that, ...objects) {
   // filter out falsy values
   const values = objects.filter(object => object);
 
-  return Object.assign({}, this, ...values);
+  return Object.assign({}, that, ...values);
 }
 
-export function keys() {
-  if(this == undefined) {
+export function keys(that, ) {
+  if(that == undefined) {
     return [];
   }
 
-  return Object.keys(this);
+  return Object.keys(that);
 }
 
-export function vals() {
-  if(this == undefined) {
+export function vals(that, ) {
+  if(that == undefined) {
     return [];
   }
 
   // cheap return if getting vals of an array
-  if(this instanceof Array) {
-    return this;
+  if(that instanceof Array) {
+    return that;
   }
 
-  const ks = Object.keys(this);
+  const ks = Object.keys(that);
   const vs = new Array(ks.length);
   for(let i = 0; i < ks.length; i++) {
-    vs[i] = this[ks[i]];
+    vs[i] = that[ks[i]];
   }
 
   return vs;
 }
 
-export function size() {
-  if(this instanceof Array) {
-    return this.length;
+export function size(that, ) {
+  if(that instanceof Array) {
+    return that.length;
   }
 
-  if(typeof this === 'string') {
-    return this.length;
+  if(typeof that === 'string') {
+    return that.length;
   }
 
   // forgive calls for null/undefined
-  if(this == undefined) {
+  if(that == undefined) {
     return 0;
   }
 
-  return this::keys().length;
+  return keys(that).length;
 }
 
-export function equals(val) {
-  if(this === val) {
+export function equals(that, val) {
+  if(that === val) {
     return true;
   }
 
-  if(typeof this !== typeof val) {
+  if(typeof that !== typeof val) {
     return false;
   }
 
-  if(typeof this === 'number') {
-    return isNaN(this) && isNaN(val);
+  if(typeof that === 'number') {
+    return isNaN(that) && isNaN(val);
   }
 
-  if(this instanceof Date && val instanceof Date) {
-    return this.getTime() === val.getTime();
+  if(that instanceof Date && val instanceof Date) {
+    return that.getTime() === val.getTime();
   }
 
-  if(this instanceof RegExp && val instanceof RegExp) {
-    return this.toString() === val.toString();
+  if(that instanceof RegExp && val instanceof RegExp) {
+    return that.toString() === val.toString();
   }
 
-  const ownKeys = this::keys();
-  const altKeys = val::keys();
+  const ownKeys = keys(that);
+  const altKeys = keys(val);
 
   if(ownKeys.length !== altKeys.length) {
     return false;
@@ -233,7 +233,7 @@ export function equals(val) {
 
   for(let i = 0; i < ownKeys.length; i++) {
     const key = ownKeys[i];
-    if(!this[key]::equals(val[key])) {
+    if(!equals(that[key], val[key])) {
       return false;
     }
   }
@@ -241,53 +241,53 @@ export function equals(val) {
   return true;
 }
 
-export function isEmpty() {
-  return this::size() === 0;
+export function isEmpty(that, ) {
+  return size(that) === 0;
 }
 
-export function first() {
-  if(this == undefined) {
+export function first(that, ) {
+  if(that == undefined) {
     return undefined;
   }
 
-  return this[0];
+  return that[0];
 }
 
-export function rest() {
-  if(this == undefined) {
+export function rest(that, ) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`rest can only be called on an Array. Not on a ${type(this)}! ${docs}/rest`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`rest can only be called on an Array. Not on a ${type(that)}! ${docs}/rest`);
   }
 
-  return this.slice(1);
+  return that.slice(1);
 }
 
-export function take(n) {
-  if(this == undefined) {
+export function take(that, n) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`take can only be called on an Array. Not on a ${type(this)}! ${docs}/take`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`take can only be called on an Array. Not on a ${type(that)}! ${docs}/take`);
   }
 
   if(typeof n !== 'number') {
     throw new TypeError(`take expected first argument to be the Number of items to take. Not a ${type(n)}! ${docs}/take`);
   }
 
-  return this.slice(0, n);
+  return that.slice(0, n);
 }
 
-export function takeWhile(func) {
-  if(this == undefined) {
+export function takeWhile(that, func) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`takeWhile can only be called on an Array. Not on a ${type(this)}! ${docs}/takeWhile`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`takeWhile can only be called on an Array. Not on a ${type(that)}! ${docs}/takeWhile`);
   }
 
   if(typeof func !== 'function') {
@@ -295,36 +295,36 @@ export function takeWhile(func) {
   }
 
   let index = 0;
-  while(func(this[index]) && index < this.length) {
+  while(func(that[index]) && index < that.length) {
     index += 1;
   }
 
-  return this.slice(0, index);
+  return that.slice(0, index);
 }
 
-export function drop(n) {
-  if(this == undefined) {
+export function drop(that, n) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`drop can only be called on an Array. Not on a ${type(this)}! ${docs}/drop`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`drop can only be called on an Array. Not on a ${type(that)}! ${docs}/drop`);
   }
 
   if(typeof n !== 'number') {
     throw new TypeError(`drop expected first argument to be the Number of items to drop. Not a ${type(n)}! ${docs}/drop`);
   }
 
-  return this.slice(n);
+  return that.slice(n);
 }
 
-export function dropWhile(func) {
-  if(this == undefined) {
+export function dropWhile(that, func) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`dropWhile can only be called on an Array. Not on a ${type(this)}! ${docs}/dropWhile`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`dropWhile can only be called on an Array. Not on a ${type(that)}! ${docs}/dropWhile`);
   }
 
   if(typeof func !== 'function') {
@@ -333,24 +333,24 @@ export function dropWhile(func) {
 
   let index = 0;
 
-  while(func(this[index]) && index < this.length) {
+  while(func(that[index]) && index < that.length) {
     index += 1;
   }
 
-  return this.slice(index);
+  return that.slice(index);
 }
 
-export function flatten() {
+export function flatten(that, ) {
   // forgive calls on empty values
-  if(this == undefined) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`flatten can only be called on arrays. Not a ${type(this)}! ${docs}/flatten`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`flatten can only be called on arrays. Not a ${type(that)}! ${docs}/flatten`);
   }
 
-  const stack = [this];
+  const stack = [that];
   const flat = [];
 
   while(stack.length > 0) {
@@ -368,20 +368,20 @@ export function flatten() {
   return flat;
 }
 
-export function distinct() {
-  if(this == undefined) {
+export function distinct(that, ) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`distinct can only be called on arrays. Not a ${type(this)}! ${docs}/distinct`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`distinct can only be called on arrays. Not a ${type(that)}! ${docs}/distinct`);
   }
 
   const unique = [];
 
-  for(let i = 0; i < this.length; i++) {
-    if(unique.indexOf(this[i]) < 0) {
-      unique.push(this[i]);
+  for(let i = 0; i < that.length; i++) {
+    if(unique.indexOf(that[i]) < 0) {
+      unique.push(that[i]);
     }
   }
 
@@ -389,89 +389,89 @@ export function distinct() {
 }
 
 
-export function groupBy(func) {
+export function groupBy(that, func) {
   const grouped = {};
 
-  for(let i = 0; i < this.length; i++) {
-    const key = func(this[i]);
+  for(let i = 0; i < that.length; i++) {
+    const key = func(that[i]);
     grouped[key] = grouped[key] || [];
-    grouped[key].push(this[i]);
+    grouped[key].push(that[i]);
   }
 
   return grouped;
 }
 
-export function interpose(separator) {
+export function interpose(that, separator) {
   const interposed = [];
-  for(let i = 0; i < this.length; i++) {
-    interposed.push(this[i], separator);
+  for(let i = 0; i < that.length; i++) {
+    interposed.push(that[i], separator);
   }
 
   // remove final separator
   return interposed.slice(0, -1);
 }
 
-export function push(...items) {
-  if(!(this instanceof Array)) {
-    throw new TypeError(`push can only be called on arrays. Not a ${type(this)}! ${docs}/push`);
+export function push(that, ...items) {
+  if(!(that instanceof Array)) {
+    throw new TypeError(`push can only be called on arrays. Not a ${type(that)}! ${docs}/push`);
   }
 
-  return this.concat(items);
+  return that.concat(items);
 }
 
-export function peek() {
-  if(this.length) {
-    return this[this.length - 1];
+export function peek(that, ) {
+  if(that.length) {
+    return that[that.length - 1];
   } else {
     return undefined;
   }
 }
 
-export function pop() {
-  if(this == undefined) {
+export function pop(that, ) {
+  if(that == undefined) {
     return undefined;
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`pop can only be called on arrays. Not a ${type(this)}! ${docs}/pop`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`pop can only be called on arrays. Not a ${type(that)}! ${docs}/pop`);
   }
 
-  return this.slice(0, -1);
+  return that.slice(0, -1);
 }
 
-export function reverse() {
-  if(this == undefined) {
+export function reverse(that, ) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`reverse can only be called on arrays. Not a ${type(this)}! ${docs}/reverse`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`reverse can only be called on arrays. Not a ${type(that)}! ${docs}/reverse`);
   }
 
-  return copy(this).reverse();
+  return copy(that).reverse();
 }
 
-export function sort(func) {
-  if(this == undefined) {
+export function sort(that, func) {
+  if(that == undefined) {
     return [];
   }
 
-  if(!(this instanceof Array)) {
-    throw new TypeError(`sort can only be called on arrays. Not a ${type(this)}! ${docs}/sort`);
+  if(!(that instanceof Array)) {
+    throw new TypeError(`sort can only be called on arrays. Not a ${type(that)}! ${docs}/sort`);
   }
 
-  return copy(this).sort(func);
+  return copy(that).sort(func);
 }
 
-export function zip(values) {
-  if(this == undefined || values == undefined) {
+export function zip(that, values) {
+  if(that == undefined || values == undefined) {
     return {};
   }
 
   const zipped = {};
 
-  for(let i = 0; i < this.length; i++) {
-    const key = this[i];
+  for(let i = 0; i < that.length; i++) {
+    const key = that[i];
     const val = values[i];
     if(val != undefined) {
       zipped[key] = val;
@@ -549,8 +549,8 @@ export function repeatedly(n, func) {
   return list;
 }
 
-export function transient(func) {
-  const clone = copy(this);
+export function transient(that, func) {
+  const clone = copy(that);
 
   // do side effects
   func(clone);
