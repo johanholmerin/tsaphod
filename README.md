@@ -1,5 +1,7 @@
 # Tsaphod
 
+*Tsaphod is a TypeScript fork of [Zaphod][11], without the stalled [bind operator][9] proposal*
+
 [Clojure's][2] immutable data API for JavaScript's own data structures.
 
 ```js
@@ -27,10 +29,6 @@ npm install tsaphod
 [6]: https://tsaphod.surge.sh/tutorial
 [8]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/rest_parameters
 [9]: https://github.com/tc39/proposal-bind-operator
-[10]: https://gitter.im/tsaphod
-[11]: https://github.com/danprince/tsaphod
-[12]: http://babeljs.io/
-[13]: http://babeljs.io/docs/plugins/transform-function-bind/
-[14]: https://babeljs.io/docs/plugins/preset-stage-0/
-[15]: https://github.com/danprince/tsaphod/issues/6
+[11]: https://github.com/danprince/zaphod
+[15]: https://github.com/danprince/zaphod/issues/6
 [16]: https://github.com/sebmarkbage/ecmascript-immutable-data-structures
