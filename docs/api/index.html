@@ -8,8 +8,7 @@ title: API
 {{#each api}}
 <h3 class="code">
   <a href="/api/{{@key}}/">
-    <span class="func__name">{{@key}}</span>
-    <span class="func__params">{{this.params}}</span>
+    <span class="func__name">{{@key}}</span><span class="func__params">{{this.params}}</span>
   </a>
 </h3>
 <p>{{at ../docs this.name "description"}}</p>

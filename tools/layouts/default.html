@@ -20,8 +20,7 @@
         {{#each api}}
         <li class="search-results__result" data-search="{{@key}}">
           <a href="/api/{{@key}}/" class="code">
-            <span class="func__name">{{@key}}</span>
-            <span class="func__params">{{this.params}}</span>
+            <span class="func__name">{{@key}}</span><span class="func__params">{{this.params}}</span>
           </a>
         </li>
         {{/each}}
@@ -39,7 +38,8 @@
           class="{{#if active.api-index}}active{{/if}}">
           API
         </a>
-        <a href="http://github.com/johanholmerin/tsaphod"><i class="icon-github"></i></a>
+        <div class="nav--spacer"></div>
+        <a href="http://github.com/johanholmerin/tsaphod" title="GitHub"><i class="icon-github"></i></a>
       </nav>
       <div class="main__content">
         {{{contents}}}
@@ -116,51 +116,6 @@
   content: "\e903";
 }
 
-
-/**
- * Web fonts
- */
-@font-face {
-  font-family: 'League Spartan';
-  src: url('/assets/fonts/leaguespartan-bold.eot');
-  src: url('/assets/fonts/leaguespartan-bold.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/leaguespartan-bold.woff2') format('woff2'),
-       url('/assets/fonts/leaguespartan-bold.woff') format('woff'),
-       url('/assets/fonts/leaguespartan-bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Mononoki';
-  src: url('/assets/fonts/mononoki-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Universalis ADF Std';
-  src: url('/assets/fonts/UniversalisADFStd-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Universalis ADF Std';
-  src: url('/assets/fonts/UniversalisADFStd-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Universalis ADF Std';
-  src: url('/assets/fonts/UniversalisADFStd-Italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-}
-
     </style>
-    <script src="/assets/page-accelerator.min.js"></script>
-    <script>pageAccelerator();</script>
   </body>
 </html>

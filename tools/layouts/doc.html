@@ -3,10 +3,8 @@ layout: default.html
 ---
 
 <h1 class="code">
-  <span class="func__name">{{func.name}}</span>
-  <span class="func__params">{{func.params}}</span>
+  <span class="func__name">{{func.name}}</span><span class="func__params">{{func.params}}</span>
 </h1>
-<p>
 <nav class="doc__links">
   <a href="https://github.com/johanholmerin/tsaphod/blob/master/index.js#L{{func.loc.start.line}}-L{{func.loc.end.line}}" title="View Source"><i class="icon-export"></i></a>
   |
@@ -14,7 +12,6 @@ layout: default.html
   |
 </nav>
 {{description}}
-</p>
 <hr />
 
 {{{contents}}}
