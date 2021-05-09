@@ -16,16 +16,16 @@ The `isEmpty` function can be called on a collection to determine whether it con
 ```js
 import { isEmpty } from 'tsaphod';
 
-[1, 2, 3]::isEmpty()
+isEmpty([1, 2, 3])
 // => false
 
-[]::isEmpty()
+isEmpty([])
 // => true
 
-({ a: 1 })::isEmpty()
+isEmpty({ a: 1 })
 // => false
 
-({})::isEmpty()
+isEmpty({})
 // => true
 ```
 

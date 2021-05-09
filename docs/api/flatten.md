@@ -11,7 +11,7 @@ The `flatten` function returns a new array after collapsing and merging any nest
 ```js
 import { flatten } from 'zapod';
 
-[1, [2, 3], 4]::flatten()
+flatten([1, [2, 3], 4])
 // => [1, 2, 3, 4]
 ```
 
@@ -20,10 +20,10 @@ import { flatten } from 'zapod';
 ```js
 import { flatten } from 'tsaphod';
 
-null::flatten()
+flatten(null)
 // => []
 
-undefined::flatten()
+flatten(undefined)
 // => []
 ```
 

@@ -14,7 +14,7 @@ The `drop` function returns a new array with the first `n` items omitted.
 ```js
 import { drop } from 'tsaphod';
 
-[0, 1, 2, 3]::drop(1)
+drop([0, 1, 2, 3], 1)
 // => [1, 2, 3]
 ```
 

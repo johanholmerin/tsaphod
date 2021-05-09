@@ -16,9 +16,9 @@ When there are fewer than `n` items in the target array, they will all be return
 ```js
 import { take } from 'tsaphod';
 
-[1, 2, 3]::take(2)
+take([1, 2, 3], 2)
 // [1, 2]
 
-[1]::take(10)
+take([1], 10)
 // [1]
 ```

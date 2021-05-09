@@ -15,10 +15,10 @@ The `func` parameter is optional, but when passed it will be forwarded on to `so
 ```js
 import { sort } from 'tsaphod';
 
-[3, 2, 1]::sort()
+sort([3, 2, 1])
 // => [1, 2, 3]
 
-[2, 1, 3]::sort((a, b) => b - a)
+sort([2, 1, 3], (a, b) => b - a)
 // => [3, 2, 1]
 ```
 

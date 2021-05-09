@@ -14,14 +14,14 @@ Returns the "tail" (or the items after the first) from an array.
 ```js
 import { rest } from 'tsaphod';
 
-[1, 2, 3]::rest()
+rest([1, 2, 3])
 // => [2, 3]
 ```
 
 ```js
 import { rest } from 'tsaphod';
 
-[]::rest()
+rest([])
 // => []
 ```
 

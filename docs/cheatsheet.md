@@ -51,7 +51,7 @@ These functions only work with arrays.
 ---
 
 ### Functional Utilities
-These functions are just functional utilities. 
+These functions are just functional utilities.
 
 [`constantly`](/api/constantly)
 [`identity`](/api/identity)
@@ -67,14 +67,14 @@ These functions are just functional utilities.
 
 | Task | Mutable | Immutable |
 | ---- | ------- | --------- |
-| Setting a property | `obj.a = 3` | [`obj::set('a', 3)`](/api/set) |
-| Removing a property | `delete obj.a` | [`obj::remove('a')`](/api/remove) |
-| Getting a property | `obj.a` | [`obj::get('a')`](/api/get) |
-| Merging objects | `Object.assign(obj, src)` | [`obj::merge(src)`](/api/merge) |
-| Pushing items onto an array | `arr.push(1, 2)` | [`arr::push(1, 2)`](/api/push) |
-| Remove item from end of array | `arr.pop()` | [`arr::pop()`](/api/pop) |
-| Reversing an array | `arr.reverse()` | [`arr::reverse()`](/api/reverse) |
-| Sorting an array | `arr.sort()` | [`arr::sort()`](/api/sort) |
+| Setting a property | `obj.a = 3` | [`set(obj, 'a', 3)`](/api/set) |
+| Removing a property | `delete obj.a` | [`remove(obj, 'a')`](/api/remove) |
+| Getting a property | `obj.a` | [`get(obj, 'a')`](/api/get) |
+| Merging objects | `Object.assign(obj, src)` | [`merge(obj, src)`](/api/merge) |
+| Pushing items onto an array | `arr.push(1, 2)` | [`push(arr, 1, 2)`](/api/push) |
+| Remove item from end of array | `arr.pop()` | [`pop(arr)`](/api/pop) |
+| Reversing an array | `arr.reverse()` | [`reverse(arr)`](/api/reverse) |
+| Sorting an array | `arr.sort()` | [`sort(arr)`](/api/sort) |
 
 ---
 
@@ -89,7 +89,7 @@ obj['a'] = 3;
 The [`set`](/api/set) function will return a new collection with the value for a single property updated.
 
 ```js
-obj::set('a', 3);
+set(obj, 'a', 3);
 ```
 
 ---
@@ -105,7 +105,7 @@ delete obj['a'];
 The [`remove`](/api/remove) function will return a new collection with the property removed.
 
 ```js
-obj::remove('a');
+remove(obj, 'a');
 ```
 
 ---
@@ -120,7 +120,7 @@ Object.assign({}, { a: 1 }, { b: 2 });
 The [`merge`](/api/merge) function will always merge the collections into a new one.
 
 ```js
-({ a: 1 })::merge({ b: 2 });
+merge({ a: 1 }, { b: 2 });
 ```
 
 ---
@@ -135,7 +135,7 @@ The `.push` method mutates an array by adding new items to the end of it. Then i
 The [`push`](/api/push) function returns a new array with the items added onto the end.
 
 ```js
-[1, 2, 3]::push(4)
+push([1, 2, 3], 4)
 ```
 
 ---
@@ -150,7 +150,7 @@ The `.pop` method mutates an array by removing the final item, then returning th
 The [`pop`](/api/pop) function returns a new array with the final item removed.
 
 ```js
-[1, 2, 3]::pop()
+pop([1, 2, 3])
 ```
 
 ---
@@ -165,7 +165,7 @@ The `.sort` method mutates the array by sorting it in place.
 The [`sort`](/api/sort) function returns a new sorted copy of the array.
 
 ```js
-[2, 1, 3]::sort()
+sort([2, 1, 3])
 ```
 
 ---
@@ -180,6 +180,6 @@ The `.reverse` method mutates the array by reversing it in place.
 The [`reverse`](/api/reverse) function returns a reversed copy of the array.
 
 ```js
-[3, 2, 1]::reverse()
+reverse([3, 2, 1])
 ```
 

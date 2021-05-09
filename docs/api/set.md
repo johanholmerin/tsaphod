@@ -26,7 +26,7 @@ import { set } from 'tsaphod';
 
 const foo = { bar: 'baz' };
 
-foo::set('qux', 'quz');
+set(foo, 'qux', 'quz');
 // => { bar: 'baz' }
 ```
 
@@ -37,7 +37,7 @@ import { set } from 'tsaphod';
 
 const xs = [1, 2, 3];
 
-xs::set(0, 5);
+set(xs, 0, 5);
 // => [5, 2, 3]
 ```
 

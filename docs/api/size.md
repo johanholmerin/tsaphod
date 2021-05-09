@@ -12,7 +12,7 @@ When called on an array or string, size will return the length property.
 ```js
 import { size } from 'tsaphod';
 
-[1, 2, 3]::size()
+size([1, 2, 3])
 // => 3
 ```
 
@@ -21,7 +21,7 @@ When called on an object, `size` will return the number of keys.
 ```js
 import { size } from 'tsaphod';
 
-({ a: 1, b: 2 })::size()
+size({ a: 1, b: 2 })
 // => 2
 ```
 
@@ -30,11 +30,11 @@ Calling `size` on a value without a logical length will return `0` rather than t
 ```js
 import { size } from 'tsaphod';
 
-(null)::size()
+size(null)
 // => 0
-(undefined)::size()
+size(undefined)
 // => 0
-(2)::size()
+size(2)
 // => 0
 ```
 

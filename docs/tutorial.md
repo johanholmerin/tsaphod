@@ -230,7 +230,8 @@ function addPoint(playerName) {
   );
 
   updateGame(game => {
-    return game::updateIn(
+    return updateIn(
+      game,
       ['players', playerIndex, 'score'],
       n => n + 1
     );
@@ -238,7 +239,7 @@ function addPoint(playerName) {
 }
 ```
 
-The `addPoint` function is very similar to the previous version. In fact, there's just one difference. We've used `::` instead of `.` to access the `updateIn` function.
+The `addPoint` function is very similar to the previous version.
 
-Tsaphod functions should be called on regular JavaScript objects, which they all treat as immutable. The function bind operator allows us to keep our data in a logical and readable position.
+Tsaphod functions should be called on regular JavaScript objects, which they all treat as immutable.
 

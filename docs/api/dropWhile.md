@@ -17,7 +17,7 @@ import { dropWhile } from 'tsaphod';
 
 const isNegative = (x) => x < 0;
 
-[-3, -2, -1, 0, 1, 2, 3]::dropWhile(isNegative)
+dropWhile([-3, -2, -1, 0, 1, 2, 3], isNegative)
 // => [0, 1, 2, 3]
 ```
 

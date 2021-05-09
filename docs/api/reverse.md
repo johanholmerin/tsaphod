@@ -13,7 +13,7 @@ The `reverse` function copies, then reverses an array using [the native `reverse
 ```js
 import { reverse } from 'tsaphod';
 
-[3, 2, 1]::reverse()
+reverse([3, 2, 1])
 // => [1, 2, 3]
 ```
 

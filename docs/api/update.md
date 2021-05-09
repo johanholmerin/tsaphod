@@ -16,7 +16,7 @@ import { update } from 'tsaphod';
 
 const life = { meaning: 41 };
 
-life::update('meaning', n => n + 1)
+update(life, 'meaning', n => n + 1)
 // => { meaning: 42 }
 ```
 
@@ -28,7 +28,7 @@ import { update } from 'tsaphod';
 const life = { meaning: 2 };
 const add = (a, b) => a + b;
 
-life::update('meaning', add, 40);
+update(life, 'meaning', add, 40);
 // => { meaning: 42 }
 ```
 

@@ -14,7 +14,7 @@ This operation is equivalent to accessing the item at index `array.length - 1`.
 ```js
 import { peek } from 'tsaphod';
 
-[1, 2, 3]::peek()
+peek([1, 2, 3])
 // => 3
 ```
 

@@ -23,7 +23,7 @@ import { unset } from 'tsaphod';
 
 const foo = { bar: 'baz' };
 
-foo::unset('bar');
+unset(foo, 'bar');
 // => { }
 ```
 
@@ -34,7 +34,7 @@ import { unset } from 'tsaphod';
 
 const xs = [1, 2, 3];
 
-xs::unset(0);
+unset(xs, 0);
 // => [undefined, 2, 3]
 ```
 

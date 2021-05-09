@@ -5,18 +5,17 @@ title: Tsaphod
 
 <center class="hero">
 # Tsaphod
-[_(Zay-fod)_][1]
 </center>
 <hr />
 
-[Clojure's][2] immutable data API for JavaScript's own data structures, using the [function bind operator][9].
+[Clojure's][2] immutable data API for JavaScript's own data structures.
 
 ```js
 import { inc, update } from 'tsaphod';
 
 const state = { count: 0 };
 
-state::update('count', inc)
+update(state, 'count', inc)
 // => { count: 1 }
 ```
 
@@ -33,37 +32,22 @@ The new structures need to be converted back into native structures at the edges
 
 Tsaphod takes the tried and tested functions from the core of Clojure's immutable data API and rewrites them so that they work with JavaScript's own data structures.
 
-## Function Bind
-The `::` (function-bind) operator is still at the proposal stage for the language, which means [Babel][12] is required to use it. Many JavaScript projects are already using Babel, but compiling this syntax will also require either the [plugin][13] or the [stage-0 preset][14].
-
-Not everyone is ready to adopt experimental syntax, but it's completely possible to use Tsaphod's functions without function-bind. Check out the [compatibility interface](/compat/).
-
 ## Usage
 Tsaphod is available through npm.
 
 ```sh
-npm install --save tsaphod
+npm install tsaphod
 ```
 
 Or you can get it from a CDN.
 
 ```sh
 https://unpkg.com/tsaphod
-# or
-https://unpkg.com/tsaphod/compat
 ```
-
-Check out the [getting started](/getting-started/) guide for an in-depth explanation on configuring Babel to work with the function-bind operator.
 
 [1]: https://en.wikipedia.org/wiki/Tsaphod_Beeblebrox
 [2]: https://clojure.org/
 [8]: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/rest_parameters
-[9]: https://github.com/tc39/proposal-bind-operator
-[10]: https://gitter.im/tsaphod
 [11]: https://github.com/johanholmerin/tsaphod
-[12]: http://babeljs.io/
-[13]: http://babeljs.io/docs/plugins/transform-function-bind/ 
-[14]: https://babeljs.io/docs/plugins/preset-stage-0/
-[15]: https://github.com/johanholmerin/tsaphod/issues/6
 [16]: https://github.com/sebmarkbage/ecmascript-immutable-data-structures
 

@@ -19,7 +19,7 @@ If the path in `keys` doesn't already exist, then it will be created using value
 ```js
 import { setIn } from 'tsaphod';
 
-({ a: { b: 1 } })::setIn(['a', 'b'], 2)
+setIn({ a: { b: 1 } }, ['a', 'b'], 2)
 // => { a: { b: 2 } }
 ```
 
@@ -28,7 +28,7 @@ It will use objects to create the path if it doesn't already exist.
 ```js
 import { setIn } from 'tsaphod';
 
-({})::setIn(['z', 'b'], 'me')
+setIn({}, ['z', 'b'], 'me')
 // => { z: { b: 'me' } }
 ```
 
@@ -39,6 +39,6 @@ import { setIn } from 'tsaphod';
 
 const p = str => str.split('.');
 
-({ bee: { ble: 'brox' } })::setIn(p('bee.ble'), 'brix');
+setIn({ bee: { ble: 'brox' } }, p('bee.ble'), 'brix');
 ```
 

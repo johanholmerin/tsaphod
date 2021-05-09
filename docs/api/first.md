@@ -13,13 +13,13 @@ Returns the "head" (or first item) from an array.
 ```js
 import { first } from 'tsaphod';
 
-[1, 2, 3]::first()
+first([1, 2, 3])
 // => 1
 ```
 
 ```js
 import { first } from 'tsaphod';
 
-[]::first()
+first([])
 // => undefined
 ```

@@ -16,7 +16,7 @@ Calling `vals` on an object will return an array of the values inside the object
 ```js
 import { vals } from 'tsaphod';
 
-({ a: 'dent', f: 'prefect', t: 'mcmillan' })::vals()
+vals({ a: 'dent', f: 'prefect', t: 'mcmillan' })
 // => ['dent', 'prefect', 'mcmillan']
 ```
 
@@ -25,10 +25,10 @@ import { vals } from 'tsaphod';
 ```js
 import { keys } from 'tsaphod';
 
-(null)::keys()
+keys(null)
 // => []
 
-(undefined)::keys()
+keys(undefined)
 // => []
 ```
 

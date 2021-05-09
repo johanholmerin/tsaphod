@@ -20,10 +20,10 @@ Comparing objects and arrays.
 ```js
 import { equals } from 'tsaphod';
 
-({ a: 1 })::equals({ a: 1 })
+equals({ a: 1 }, { a: 1 })
 // => true
 
-[1, 2, 3]::equals([1, 2, 3])
+equals([1, 2, 3], [1, 2, 3])
 // => true
 ```
 
@@ -31,10 +31,10 @@ Comparing regexes and dates.
 ```js
 import { equals } from 'tsaphod';
 
-/hello/::equals(/hello/)
+equals(/hello/, /hello/)
 // => true
 
-(new Date)::equals(new Date)
+equals(new Date(0), new Date(0))
 // => true
 ```
 
@@ -42,7 +42,7 @@ Comparing NaN values.
 ```js
 import { equals } from 'tsaphod';
 
-NaN::equals(NaN)
+equals(NaN, NaN)
 // => true
 ```
 

@@ -12,7 +12,7 @@ The `zip` function should be called on an array of keys, with an array of values
 ```js
 import { zip } from 'tsaphod';
 
-['a', 'f']::zip(['dent', 'prefect'])
+zip(['a', 'f'], ['dent', 'prefect'])
 // => { a: 'dent', f: 'prefect' }
 ```
 
@@ -21,7 +21,7 @@ import { zip } from 'tsaphod';
 ```js
 import { zip } from 'tsaphod';
 
-['z', 't', 'm']::zip(['beeblebrox', 'mcmillan'])
+zip(['z', 't', 'm'], ['beeblebrox', 'mcmillan'])
 // => { z: 'beeblebrox', t: 'mcmillan' }
 ```
 
@@ -30,7 +30,7 @@ It will also ignore values without keys.
 ```js
 import { zip } from 'tsaphod';
 
-['z', 't']::zip(['beeblebrox', 'mcmillan', 'marvin'])
+zip(['z', 't'], ['beeblebrox', 'mcmillan', 'marvin'])
 // => { z: 'beeblebrox', t: 'mcmillan' }
 ```
 
@@ -39,7 +39,7 @@ Keys with corresponding values of `undefined` will not be included either.
 ```js
 import { zip } from 'tsaphod';
 
-['blagulon']::zip([undefined])
+zip(['blagulon'], [undefined])
 // => { }
 ```
 

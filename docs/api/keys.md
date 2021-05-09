@@ -16,7 +16,7 @@ Calling `keys` on an object will return an array of the strings that are used as
 ```js
 import { keys } from 'tsaphod';
 
-({ a: 'dent', f: 'prefect', t: 'mcmillan' })::keys()
+keys({ a: 'dent', f: 'prefect', t: 'mcmillan' })
 // => ['a', 'f', 't']
 ```
 
@@ -25,7 +25,7 @@ It's important to notice that arrays store their indexes as strings and `keys` r
 ```js
 import { keys } from 'tsaphod';
 
-['arthur', 'ford', 'trillian']::keys()
+keys(['arthur', 'ford', 'trillian'])
 // => ['0', '1', '2']
 ```
 
@@ -34,10 +34,10 @@ Rather than throwing an error, `keys` returns an empty array for values that don
 ```js
 import { keys } from 'tsaphod';
 
-(null)::keys()
+keys(null)
 // => []
 
-(undefined)::keys()
+keys(undefined)
 // => []
 ```
 

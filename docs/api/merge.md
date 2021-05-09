@@ -13,7 +13,7 @@ The `merge` function is a wrapper around [`Object.assign`][1], but it always ret
 ```js
 import { merge } from 'zahpod';
 
-({ hello: 'earth' })::merge({ goodbye: 'betelgeuse' })
+merge({ hello: 'earth' }, { goodbye: 'betelgeuse' })
 // => { hello: 'earth', goodbye: 'betelgeuse' }
 ```
 
@@ -22,7 +22,7 @@ Falsy values will be ignored
 ```js
 import { merge } from 'zahpod';
 
-({ hello: 'damogran' })::merge(undefined, { goodbye: 'magrathea' })
+merge({ hello: 'damogran' }, undefined, { goodbye: 'magrathea' })
 // => { hello: 'damogran', goodbye: 'magrathea' }
 ```
 

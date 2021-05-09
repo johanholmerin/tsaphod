@@ -13,7 +13,7 @@ The `pop` function returns an new array with the item at the last index omitted.
 ```js
 import { pop } from 'tsaphod';
 
-[1, 2, 3]::pop()
+pop([1, 2, 3])
 // => [1, 2]
 ```
 

@@ -1,7 +1,7 @@
 ---
 layout: doc.html
 description: >
-  Separates all items in an array with a value. 
+  Separates all items in an array with a value.
 ---
 
 The `interpose` function returns a new array, with `separator` found between each of the items from the array it was called on.
@@ -11,7 +11,7 @@ The `interpose` function returns a new array, with `separator` found between eac
 ```js
 import { interpose } from 'tsaphod';
 
-[1, 2, 3]::interpose('+')
+interpose([1, 2, 3], '+')
 // => [1, '+', 2, '+', 3]
 ```
 

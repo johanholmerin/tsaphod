@@ -14,6 +14,6 @@ import { groupBy } from 'tsaphod';
 const names = ['arthur', 'alicia', 'tsaphod'];
 const first = (name) => name[0];
 
-names::groupBy(first)
+groupBy(names, first)
 // => { a: ['arthur', 'alicia'], z: ['tsaphod'] }
 ```

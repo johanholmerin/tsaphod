@@ -17,6 +17,6 @@ import { takeWhile } from 'tsaphod';
 
 const isNegative = (x) => x < 0;
 
-[-3, -2, -1, 0, 1, 2, 3]::takeWhile(isNegative)
+takeWhile([-3, -2, -1, 0, 1, 2, 3], isNegative)
 // => [-3, -2, -1]
 ```

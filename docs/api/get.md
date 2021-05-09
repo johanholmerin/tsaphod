@@ -10,7 +10,7 @@ see-also:
 <div class="note">
   <i class="icon-warning"></i> <strong>Note</strong>
   <br />
-  Normally you should use JavaScript's own [property accessor][1] syntax. The `get` function is only included for accessing properties when you need to provide a default value. 
+  Normally you should use JavaScript's own [property accessor][1] syntax. The `get` function is only included for accessing properties when you need to provide a default value.
 </div>
 
 The `get` function will try to return the value at `key` in the collection. The `notFound` argument will be returned if the `key` can't be found or has a value of `undefined`.
@@ -24,7 +24,7 @@ import { get } from 'tsaphod';
 ({ a: 1 }).a
 // => 1
 
-({ a: 1 })::get('a')
+get({ a: 1 }, 'a')
 // => 1
 ```
 
@@ -33,10 +33,10 @@ You can also pass a `notFound` argument which will be returned if the key doesn'
 ```js
 import { get } from 'tsaphod';
 
-({ a: 1 })::get('b', 0)
+get({ a: 1 }, 'b', 0)
 // => 0
 
-({ a: undefined })::get('a', 3)
+get({ a: undefined }, 'a', 3)
 // => 3
 ```
 
@@ -48,10 +48,10 @@ import { get } from 'tsaphod';
 [1, 2, 3][2]
 // => 3
 
-[1, 2, 3]::get(2)
+get([1, 2, 3], 2)
 // => 3
 
-[1]::get(2, 'foo')
+get([1], 2, 'foo')
 // => 'foo'
 ```
 

@@ -1,23 +1,23 @@
 const start = Date.now();
 
-const fs = require('fs');
-const path = require('path');
-const metalsmith = require('metalsmith');
-const layouts = require('metalsmith-layouts');
-const markdown = require('metalsmith-markdown');
-const define = require('metalsmith-define');
-const metallic = require('metalsmith-metallic');
-const hbs = require('handlebars');
-const matter = require('gray-matter');
+import fs from 'fs';
+import path from 'path';
+import metalsmith from 'metalsmith';
+import markdown from 'metalsmith-markdown';
+import define from 'metalsmith-define';
+import metallic from 'metalsmith-metallic';
+import hbs from 'handlebars';
+import matter from 'gray-matter';
 
-const parseApi = require('./parse-api');
-const package = require('../package.json');
+import parseApi from './parse-api.js';
 
 const dir = process.cwd();
-const src = fs.readFileSync(`${dir}/src/index.js`).toString();
+const pkg = JSON.parse(fs.readFileSync(`${dir}/package.json`).toString());
+
+const src = fs.readFileSync(`${dir}/index.js`).toString();
 const api = parseApi(src);
 
-const metadata = { package, api };
+const metadata = { package: pkg, api };
 
 metalsmith(dir)
   .source('docs')
@@ -107,7 +107,7 @@ function handlebars(files, metalsmith, done) {
         file.layout,
         metadata
       );
-      file.contents = new Buffer(contents);
+      file.contents = new Buffer.from(contents);
     }
   });
 
@@ -175,5 +175,3 @@ hbs.registerHelper('at', function(object, ...args) {
 
   return ref;
 });
-
-

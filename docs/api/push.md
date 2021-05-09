@@ -12,7 +12,7 @@ Returns a new array by pushing other items onto an existing one.
 ```js
 import { push } from 'tsaphod';
 
-[1, 2]::push(3, 4)
+push([1, 2], 3, 4)
 // => [1, 2, 3, 4]
 ```
 

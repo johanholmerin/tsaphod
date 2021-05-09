@@ -24,7 +24,7 @@ import { updateIn } from 'tsaphod';
 const guide = { earth: { harmless: true } };
 const not = bool => !bool;
 
-guide::updateIn(['earth', 'harmless'], not)
+updateIn(guide, ['earth', 'harmless'], not)
 // => { earth: { harmless: false } }
 ```
 
@@ -35,7 +35,7 @@ import { updateIn } from 'tsaphod';
 
 const guide = {};
 
-guide::updateIn(['earth', 'harmless'], x => x);
+updateIn(guide, ['earth', 'harmless'], x => x);
 // => { earth: { harmless: undefined } }
 ```
 

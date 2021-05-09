@@ -1,6 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const babylon = require('babylon');
+import babylon from 'babylon';
 
 function getParamName(node) {
   if(node.type === 'Identifier') {
@@ -20,11 +18,10 @@ function flatParams(params) {
   return `(${params.join(', ')})`;
 }
 
-function parseApi(src) {
+export default function parseApi(src) {
   const ast = babylon.parse(src, {
     locations: true,
     sourceType: 'module',
-    plugins: ['functionBind']
   });
 
   const api = ast.program.body
@@ -53,6 +50,3 @@ function invertOn(key, objects) {
 
   return inverted;
 }
-
-module.exports = parseApi;
-

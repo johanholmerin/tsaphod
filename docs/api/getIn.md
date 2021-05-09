@@ -25,7 +25,7 @@ Using `getIn` makes nested property access safer.
 ```js
 import { getIn } from 'tsaphod';
 
-going::getIn(['down', 'a', 'rabbit', 'hole'], 'mad')
+getIn(going, ['down', 'a', 'rabbit', 'hole'], 'mad')
 // => 'mad'
 ```
 
