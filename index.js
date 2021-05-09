@@ -1,10 +1,3 @@
-const docs = 'https://zaphod.surge.sh/api';
-
-function type(any) {
-  const str = Object.prototype.toString.call(any);
-  return str.slice(8, -1);
-}
-
 function copy(object) {
   const keys = Object.keys(object);
   const clone = object instanceof Array ? [] : {};
@@ -31,10 +24,6 @@ export function set(that, key, value) {
 }
 
 export function setIn(that, keys, value) {
-  if(!(keys instanceof Array)) {
-    throw new TypeError(`setIn expected first argument to be an Array of keys. Not a ${type(keys)}! ${docs}/setIn`);
-  }
-
   if(keys.length === 0) {
     return that;
   }
@@ -93,10 +82,6 @@ export function get(that, key, notFound) {
 }
 
 export function getIn(that, keys, notFound) {
-  if(!(keys instanceof Array)) {
-    throw new TypeError(`getIn expected first argument to be an Array of keys. Not a ${type(keys)}! ${docs}/getIn`)
-  }
-
   if(keys.length === 0) {
     return notFound;
   }
@@ -137,10 +122,6 @@ export function update(that, key, func, ...args) {
 }
 
 export function updateIn(that, keys, func, ...args) {
-  if(!(keys instanceof Array)) {
-    throw new TypeError(`updateIn expected first argument to be an Array of keys. Not a ${type(keys)}! ${docs}/updateIn`);
-  }
-
   const current = getIn(that, keys);
   const updated =
     (func == undefined)
@@ -157,7 +138,7 @@ export function merge(that, ...objects) {
   return Object.assign({}, that, ...values);
 }
 
-export function keys(that, ) {
+export function keys(that) {
   if(that == undefined) {
     return [];
   }
@@ -165,7 +146,7 @@ export function keys(that, ) {
   return Object.keys(that);
 }
 
-export function vals(that, ) {
+export function vals(that) {
   if(that == undefined) {
     return [];
   }
@@ -184,7 +165,7 @@ export function vals(that, ) {
   return vs;
 }
 
-export function size(that, ) {
+export function size(that) {
   if(that instanceof Array) {
     return that.length;
   }
@@ -239,11 +220,11 @@ export function equals(that, val) {
   return true;
 }
 
-export function isEmpty(that, ) {
+export function isEmpty(that) {
   return size(that) === 0;
 }
 
-export function first(that, ) {
+export function first(that) {
   if(that == undefined) {
     return undefined;
   }
@@ -251,13 +232,9 @@ export function first(that, ) {
   return that[0];
 }
 
-export function rest(that, ) {
+export function rest(that) {
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`rest can only be called on an Array. Not on a ${type(that)}! ${docs}/rest`);
   }
 
   return that.slice(1);
@@ -268,28 +245,12 @@ export function take(that, n) {
     return [];
   }
 
-  if(!(that instanceof Array)) {
-    throw new TypeError(`take can only be called on an Array. Not on a ${type(that)}! ${docs}/take`);
-  }
-
-  if(typeof n !== 'number') {
-    throw new TypeError(`take expected first argument to be the Number of items to take. Not a ${type(n)}! ${docs}/take`);
-  }
-
   return that.slice(0, n);
 }
 
 export function takeWhile(that, func) {
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`takeWhile can only be called on an Array. Not on a ${type(that)}! ${docs}/takeWhile`);
-  }
-
-  if(typeof func !== 'function') {
-    throw new TypeError(`takeWhile expected first argument to be a predicate Function. Not a ${type(func)}! ${docs}/takeWhile`);
   }
 
   let index = 0;
@@ -305,28 +266,12 @@ export function drop(that, n) {
     return [];
   }
 
-  if(!(that instanceof Array)) {
-    throw new TypeError(`drop can only be called on an Array. Not on a ${type(that)}! ${docs}/drop`);
-  }
-
-  if(typeof n !== 'number') {
-    throw new TypeError(`drop expected first argument to be the Number of items to drop. Not a ${type(n)}! ${docs}/drop`);
-  }
-
   return that.slice(n);
 }
 
 export function dropWhile(that, func) {
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`dropWhile can only be called on an Array. Not on a ${type(that)}! ${docs}/dropWhile`);
-  }
-
-  if(typeof func !== 'function') {
-    throw new TypeError(`dropWhile expected first argument to be a predicate Function. Not a ${type(func)}! ${docs}/dropWhile`);
   }
 
   let index = 0;
@@ -338,14 +283,10 @@ export function dropWhile(that, func) {
   return that.slice(index);
 }
 
-export function flatten(that, ) {
+export function flatten(that) {
   // forgive calls on empty values
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`flatten can only be called on arrays. Not a ${type(that)}! ${docs}/flatten`);
   }
 
   const stack = [that];
@@ -366,13 +307,9 @@ export function flatten(that, ) {
   return flat;
 }
 
-export function distinct(that, ) {
+export function distinct(that) {
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`distinct can only be called on arrays. Not a ${type(that)}! ${docs}/distinct`);
   }
 
   const unique = [];
@@ -410,14 +347,10 @@ export function interpose(that, separator) {
 }
 
 export function push(that, ...items) {
-  if(!(that instanceof Array)) {
-    throw new TypeError(`push can only be called on arrays. Not a ${type(that)}! ${docs}/push`);
-  }
-
   return that.concat(items);
 }
 
-export function peek(that, ) {
+export function peek(that) {
   if(that.length) {
     return that[that.length - 1];
   } else {
@@ -425,25 +358,17 @@ export function peek(that, ) {
   }
 }
 
-export function pop(that, ) {
+export function pop(that) {
   if(that == undefined) {
     return undefined;
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`pop can only be called on arrays. Not a ${type(that)}! ${docs}/pop`);
   }
 
   return that.slice(0, -1);
 }
 
-export function reverse(that, ) {
+export function reverse(that) {
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`reverse can only be called on arrays. Not a ${type(that)}! ${docs}/reverse`);
   }
 
   return copy(that).reverse();
@@ -452,10 +377,6 @@ export function reverse(that, ) {
 export function sort(that, func) {
   if(that == undefined) {
     return [];
-  }
-
-  if(!(that instanceof Array)) {
-    throw new TypeError(`sort can only be called on arrays. Not a ${type(that)}! ${docs}/sort`);
   }
 
   return copy(that).sort(func);
@@ -514,10 +435,6 @@ export function range(end) {
 }
 
 export function repeat(n, any) {
-  if(typeof n !== 'number') {
-    throw new TypeError(`repeat expected first argument to be the Number of times to repeat the value. Not a ${type(n)}! ${docs}/repeat`);
-  }
-
   const list = [];
 
   // prevent infinite loops
@@ -531,10 +448,6 @@ export function repeat(n, any) {
 }
 
 export function repeatedly(n, func) {
-  if(typeof n !== 'number') {
-    throw new TypeError(`repeatedly expected first argument to be the Number of times to call the func. Not a ${type(n)}! ${docs}/repeatedly`);
-  }
-
   const list = [];
 
   // prevent infinite loops

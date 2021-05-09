@@ -50,13 +50,7 @@ test('set', (assert) => {
 });
 
 test('setIn', (assert) => {
-  assert.plan(10);
-
-  assert.throws(
-    () => setIn({}, 2),
-    TypeError,
-    'should throw for non-array path'
-  );
+  assert.plan(9);
 
   assert.deepEquals(
     setIn(({ trisha: { mc: 'millan' }}), ['trisha', 'mc'], 4),
@@ -197,13 +191,7 @@ test('get', (assert) => {
 });
 
 test('getIn', (assert) => {
-  assert.plan(8);
-
-  assert.throws(
-    () => getIn(({}), 2),
-    TypeError,
-    'should throw for non-array keys'
-  );
+  assert.plan(7);
 
   assert.is(
     getIn(({ bee: { ble: 'brox' } }), ['bee', 'ble']),
@@ -275,13 +263,7 @@ test('update', (assert) => {
 });
 
 test('updateIn', (assert) => {
-  assert.plan(5);
-
-  assert.throws(
-    () => updateIn(({}), 2),
-    TypeError,
-    'should throw for non-array path'
-  );
+  assert.plan(4);
 
   const inc = n => n + 1;
 
@@ -522,13 +504,7 @@ test('equals', (assert) => {
 });
 
 test('push', (assert) => {
-  assert.plan(4);
-
-  assert.throws(
-    () => push(false, 3),
-    TypeError,
-    'should throw when called on non-array type'
-  );
+  assert.plan(3);
 
   assert.deepEquals(
     push([1, 2], 3),
@@ -579,13 +555,7 @@ test('first', (assert) => {
 });
 
 test('rest', (assert) => {
-  assert.plan(5);
-
-  assert.throws(
-    () => rest(false),
-    TypeError,
-    'should throw when called on non-array type'
-  );
+  assert.plan(4);
 
   assert.deepEquals(
     rest([1, 2, 3]),
@@ -613,7 +583,7 @@ test('rest', (assert) => {
 });
 
 test('flatten', (assert) => {
-  assert.plan(5);
+  assert.plan(4);
 
   assert.deepEquals(
     flatten([1, 2, 3, 4]),
@@ -638,22 +608,10 @@ test('flatten', (assert) => {
     [],
     'should return empty array when flattening undefined'
   );
-
-  assert.throws(
-    () => flatten(({ })),
-    TypeError,
-    'should throw on attempt to flatten non-array'
-  );
 });
 
 test('distinct', (assert) => {
-  assert.plan(3);
-
-  assert.throws(
-    () => distinct(5),
-    TypeError,
-    'should throw when called on non-array'
-  );
+  assert.plan(2);
 
   assert.deepEquals(
     distinct([1, 2, 2, 3, 4]),
@@ -756,7 +714,7 @@ test('peek', (assert) => {
 });
 
 test('pop', (assert) => {
-  assert.plan(4);
+  assert.plan(3);
 
   assert.deepEquals(
     pop([1, 2, 3]),
@@ -771,12 +729,6 @@ test('pop', (assert) => {
     'should not mutate original array'
   );
 
-  assert.throws(
-    () => pop(5),
-    TypeError,
-    'should throw when called on non-array'
-  );
-
   assert.is(
     pop(undefined),
     undefined,
@@ -785,13 +737,7 @@ test('pop', (assert) => {
 });
 
 test('reverse', (assert) => {
-  assert.plan(4);
-
-  assert.throws(
-    () => reverse(4),
-    TypeError,
-    'should throw when called on non-array'
-  );
+  assert.plan(3);
 
   assert.deepEquals(
     reverse([1, 2, 3]),
@@ -814,13 +760,7 @@ test('reverse', (assert) => {
 });
 
 test('sort', (assert) => {
-  assert.plan(5);
-
-  assert.throws(
-    () => sort(4),
-    TypeError,
-    'should throw when called on non-array'
-  );
+  assert.plan(4);
 
   assert.deepEquals(
     sort([3, 2, 1]),
@@ -849,19 +789,7 @@ test('sort', (assert) => {
 });
 
 test('take', (assert) => {
-  assert.plan(5);
-
-  assert.throws(
-    () => take([1, 2, 3], false),
-    TypeError,
-    'should throw if called with non-numeric value for n'
-  );
-
-  assert.throws(
-    () => take(4, 10),
-    TypeError,
-    'should throw if called on non-array'
-  );
+  assert.plan(3);
 
   assert.deepEquals(
     take([1, 2, 3], 1),
@@ -883,21 +811,9 @@ test('take', (assert) => {
 });
 
 test('takeWhile', (assert) => {
-  assert.plan(6);
-
-  assert.throws(
-    () => takeWhile([1, 2, 3], false),
-    TypeError,
-    'should throw if called with non-function value for func'
-  );
+  assert.plan(4);
 
   const odd = n => (n % 2 !== 0);
-
-  assert.throws(
-    () => takeWhile(4, odd),
-    TypeError,
-    'should throw if called on non-array'
-  );
 
   assert.deepEquals(
     takeWhile([1, 3, 5, 6], odd),
@@ -925,19 +841,7 @@ test('takeWhile', (assert) => {
 });
 
 test('drop', (assert) => {
-  assert.plan(5);
-
-  assert.throws(
-    () => drop([1, 2, 3], false),
-    TypeError,
-    'should throw if called with non-numeric value for n'
-  );
-
-  assert.throws(
-    () => drop(4, 10),
-    TypeError,
-    'should throw if called on non-array'
-  );
+  assert.plan(3);
 
   assert.deepEquals(
     drop([1, 2, 3], 2),
@@ -959,21 +863,9 @@ test('drop', (assert) => {
 });
 
 test('dropWhile', (assert) => {
-  assert.plan(6);
-
-  assert.throws(
-    () => dropWhile([1, 2, 3], false),
-    TypeError,
-    'should throw if called with non-function value for func'
-  );
+  assert.plan(4);
 
   const odd = n => (n % 2 !== 0);
-
-  assert.throws(
-    () => dropWhile(4, odd),
-    TypeError,
-    'should throw if called on non-array'
-  );
 
   assert.deepEquals(
     dropWhile([1, 3, 5, 6], odd),
@@ -1114,13 +1006,7 @@ test('range', (assert) => {
 });
 
 test('repeat', (assert) => {
-  assert.plan(3);
-
-  assert.throws(
-    () => repeat('a', 4),
-    TypeError,
-    'should throw when called with non-numeric n'
-  );
+  assert.plan(2);
 
   assert.deepEqual(
     repeat(4, 10),
@@ -1136,13 +1022,7 @@ test('repeat', (assert) => {
 });
 
 test('repeatedly', (assert) => {
-  assert.plan(3);
-
-  assert.throws(
-    () => repeatedly('a', () => {}),
-    TypeError,
-    'should throw when called with non-numeric n'
-  );
+  assert.plan(2);
 
   let i = 0;
   const count = () => i += 1;

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "tape-es index.spec.js | tap-spec",
+    "test:types": "tsd",
     "docs": "node tools/make-docs.js",
     "watch-docs": "watch -p 'docs/**' -c 'npm run docs'",
     "cover": "c8 node index.spec.js | tap-spec"
@@ -32,6 +33,11 @@
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0",
     "tape-es": "^1.2.13",
+    "tsd": "^0.14.0",
+    "typescript": "^4.2.4",
     "watch-cli": "^0.2.1"
+  },
+  "dependencies": {
+    "type-fest": "^1.1.1"
   }
 }
