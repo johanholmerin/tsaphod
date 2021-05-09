@@ -4,10 +4,10 @@ title: Cheatsheet
 ---
 
 # Cheatsheet
-This document is designed to help programmers coming from JavaScript navigate their way through Zaphod's API.
+This document is designed to help programmers coming from JavaScript navigate their way through Tsaphod's API.
 
 ## Tour
-Zaphod's functions can be grouped into three categories.
+Tsaphod's functions can be grouped into three categories.
 
 ### Keyed Collections
 These functions work with objects and arrays.

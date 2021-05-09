@@ -17,7 +17,7 @@ If the path in `keys` doesn't already exist, then it will be created using value
 `setIn` can be used to set a nested value inside an object.
 
 ```js
-import { setIn } from 'zaphod';
+import { setIn } from 'tsaphod';
 
 ({ a: { b: 1 } })::setIn(['a', 'b'], 2)
 // => { a: { b: 2 } }
@@ -26,7 +26,7 @@ import { setIn } from 'zaphod';
 It will use objects to create the path if it doesn't already exist.
 
 ```js
-import { setIn } from 'zaphod';
+import { setIn } from 'tsaphod';
 
 ({})::setIn(['z', 'b'], 'me')
 // => { z: { b: 'me' } }
@@ -35,7 +35,7 @@ import { setIn } from 'zaphod';
 Here's an example of a helper for specifying paths as strings instead.
 
 ```js
-import { setIn } from 'zaphod';
+import { setIn } from 'tsaphod';
 
 const p = str => str.split('.');
 

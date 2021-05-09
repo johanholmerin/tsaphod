@@ -11,7 +11,7 @@ The `identity` function returns it's first argument.
 ### Examples
 
 ```js
-import { identity } from 'zaphod';
+import { identity } from 'tsaphod';
 
 identity(3)
 // => 3

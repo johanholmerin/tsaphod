@@ -1,8 +1,8 @@
 node_modules
 *.log*
 _docs
-/zaphod.js
-/zaphod.min.js
+/tsaphod.js
+/tsaphod.min.js
 /compat.js
 /compat.min.js
 coverage/

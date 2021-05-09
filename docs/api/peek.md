@@ -12,7 +12,7 @@ This operation is equivalent to accessing the item at index `array.length - 1`.
 
 ### Examples
 ```js
-import { peek } from 'zaphod';
+import { peek } from 'tsaphod';
 
 [1, 2, 3]::peek()
 // => 3

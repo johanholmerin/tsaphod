@@ -12,7 +12,7 @@ The `update` function returns a new collection after updating the value at `key`
 ### Examples
 
 ```js
-import { update } from 'zaphod';
+import { update } from 'tsaphod';
 
 const life = { meaning: 41 };
 
@@ -23,7 +23,7 @@ life::update('meaning', n => n + 1)
 It can also handle extra arguments.
 
 ```js
-import { update } from 'zaphod';
+import { update } from 'tsaphod';
 
 const life = { meaning: 2 };
 const add = (a, b) => a + b;

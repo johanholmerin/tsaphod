@@ -22,7 +22,7 @@ foo.qux = 'quz';
 Use `set` to change a property inside an object.
 
 ```js
-import { set } from 'zaphod';
+import { set } from 'tsaphod';
 
 const foo = { bar: 'baz' };
 
@@ -33,7 +33,7 @@ foo::set('qux', 'quz');
 `set` also works with arrays.
 
 ```js
-import { set } from 'zaphod';
+import { set } from 'tsaphod';
 
 const xs = [1, 2, 3];
 

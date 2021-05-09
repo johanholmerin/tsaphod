@@ -14,7 +14,7 @@ When there are fewer than `n` items in the target array, they will all be return
 ### Examples
 
 ```js
-import { take } from 'zaphod';
+import { take } from 'tsaphod';
 
 [1, 2, 3]::take(2)
 // [1, 2]

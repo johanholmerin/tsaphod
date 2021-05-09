@@ -11,7 +11,7 @@ The `range` function returns an array of numbers from 0 to (but not including) `
 
 ### Examples
 ```js
-import { range } from 'zaphod';
+import { range } from 'tsaphod';
 
 range(5)
 // => [0, 1, 2, 3, 4]

@@ -10,7 +10,7 @@ The `size` function returns the numeric "length" of the collection it is called 
 When called on an array or string, size will return the length property.
 
 ```js
-import { size } from 'zaphod';
+import { size } from 'tsaphod';
 
 [1, 2, 3]::size()
 // => 3
@@ -19,7 +19,7 @@ import { size } from 'zaphod';
 When called on an object, `size` will return the number of keys.
 
 ```js
-import { size } from 'zaphod';
+import { size } from 'tsaphod';
 
 ({ a: 1, b: 2 })::size()
 // => 2
@@ -28,7 +28,7 @@ import { size } from 'zaphod';
 Calling `size` on a value without a logical length will return `0` rather than throwing an error.
 
 ```js
-import { size } from 'zaphod';
+import { size } from 'tsaphod';
 
 (null)::size()
 // => 0

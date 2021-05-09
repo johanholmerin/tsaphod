@@ -1,16 +1,16 @@
 ---
 layout: default.html
-title: Zaphod
+title: Tsaphod
 ---
 
 # Compatibility
 
-Not everyone wants to use experimental language features, so it's also possible to use Zaphod without the function-bind operator.
+Not everyone wants to use experimental language features, so it's also possible to use Tsaphod without the function-bind operator.
 
-If you require a function from `zaphod/compat` it will take the collection as its first argument, query instead.
+If you require a function from `tsaphod/compat` it will take the collection as its first argument, query instead.
 
 ```js
-import { set } from 'zaphod/compat';
+import { set } from 'tsaphod/compat';
 
 set(obj, 'key', value)
 
@@ -26,7 +26,7 @@ This only applies to the functions that use `::`. Others like [`identity`](/api/
 Alternatively, you can shortcut the compilation step and write the resulting ES5 code yourself.
 
 ```js
-var z = require('zaphod');
+var z = require('tsaphod');
 
 z.set.call(obj, 'key', value);
 ```

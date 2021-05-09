@@ -11,7 +11,7 @@ The `repeat` function creates an array with length `n` and populates it exclusiv
 ### Examples
 
 ```js
-import { repeat } from 'zaphod';
+import { repeat } from 'tsaphod';
 
 repeat(5, 'z')
 // => ['z', 'z', 'z', 'z', 'z']

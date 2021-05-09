@@ -11,7 +11,7 @@ The `repeatedly` function creates an array with length `n` and populates it by c
 ### Examples
 
 ```js
-import { repeatedly } from 'zaphod';
+import { repeatedly } from 'tsaphod';
 
 repeatedly(3, Math.random)
 // => [0.6402904910501093, 0.6904983669519424, 0.06449449714273214]

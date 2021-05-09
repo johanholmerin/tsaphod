@@ -10,7 +10,7 @@ Returns a new array by pushing other items onto an existing one.
 `push` is the immutable alternative to JavaScript's [`push`][1].
 
 ```js
-import { push } from 'zaphod';
+import { push } from 'tsaphod';
 
 [1, 2]::push(3, 4)
 // => [1, 2, 3, 4]

@@ -13,7 +13,7 @@ The `dropWhile` function iterates over an array, omitting the leading items unti
 ### Examples
 
 ```js
-import { dropWhile } from 'zaphod';
+import { dropWhile } from 'tsaphod';
 
 const isNegative = (x) => x < 0;
 

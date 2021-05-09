@@ -5,19 +5,19 @@ title: Getting Started
 
 # Getting Started
 
-This guide runs through the process of adding Zaphod to a project and getting it working with Babel.
+This guide runs through the process of adding Tsaphod to a project and getting it working with Babel.
 
-## Install Zaphod
-Start by installing the latest version of Zaphod from npm.
+## Install Tsaphod
+Start by installing the latest version of Tsaphod from npm.
 
 ```
-$ npm install --save zaphod
+$ npm install --save tsaphod
 ```
 
 Then create the following `hello.js` file.
 
 ```js
-import { set, remove } from 'zaphod';
+import { set, remove } from 'tsaphod';
 
 let greeting = { goodbye: 'world' };
 
@@ -32,7 +32,7 @@ console.log(greeting);
 <div class="note">
   <i class="icon-warning"></i> <strong>Note</strong>
   <br />
-  It's possible to use Zaphod with no additional configuration if you're already using Babel with the [stage-0 preset](https://babeljs.io/docs/plugins/preset-stage-0/).
+  It's possible to use Tsaphod with no additional configuration if you're already using Babel with the [stage-0 preset](https://babeljs.io/docs/plugins/preset-stage-0/).
 </div>
 
 We'll also need to install both Babel and the plugin which will allow us to use the function bind operator.

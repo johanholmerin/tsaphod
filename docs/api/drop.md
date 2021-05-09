@@ -12,7 +12,7 @@ The `drop` function returns a new array with the first `n` items omitted.
 ### Examples
 
 ```js
-import { drop } from 'zaphod';
+import { drop } from 'tsaphod';
 
 [0, 1, 2, 3]::drop(1)
 // => [1, 2, 3]

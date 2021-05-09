@@ -9,11 +9,11 @@ The `groupBy` function returns an object which groups the items in an array toge
 ### Examples
 
 ```js
-import { groupBy } from 'zaphod';
+import { groupBy } from 'tsaphod';
 
-const names = ['arthur', 'alicia', 'zaphod'];
+const names = ['arthur', 'alicia', 'tsaphod'];
 const first = (name) => name[0];
 
 names::groupBy(first)
-// => { a: ['arthur', 'alicia'], z: ['zaphod'] }
+// => { a: ['arthur', 'alicia'], z: ['tsaphod'] }
 ```

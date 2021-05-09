@@ -19,7 +19,7 @@ The `get` function will try to return the value at `key` in the collection. The 
 You can use `get` to get a property from an object.
 
 ```js
-import { get } from 'zaphod';
+import { get } from 'tsaphod';
 
 ({ a: 1 }).a
 // => 1
@@ -31,7 +31,7 @@ import { get } from 'zaphod';
 You can also pass a `notFound` argument which will be returned if the key doesn't exist in the object, or it's value is `undefined`.
 
 ```js
-import { get } from 'zaphod';
+import { get } from 'tsaphod';
 
 ({ a: 1 })::get('b', 0)
 // => 0
@@ -43,7 +43,7 @@ import { get } from 'zaphod';
 It also works with arrays.
 
 ```js
-import { get } from 'zaphod';
+import { get } from 'tsaphod';
 
 [1, 2, 3][2]
 // => 3

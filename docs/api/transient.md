@@ -21,7 +21,7 @@ In fact, the return value from `func` will be ignored and `transient` instead ju
 ### Examples
 
 ```js
-import { transient } from 'zaphod';
+import { transient } from 'tsaphod';
 
 const foo = { bar: 1 };
 

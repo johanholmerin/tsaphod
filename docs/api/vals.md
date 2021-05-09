@@ -14,7 +14,7 @@ Under the hood it uses `Object.keys`, but rather than throwing a runtime excepti
 Calling `vals` on an object will return an array of the values inside the object.
 
 ```js
-import { vals } from 'zaphod';
+import { vals } from 'tsaphod';
 
 ({ a: 'dent', f: 'prefect', t: 'mcmillan' })::vals()
 // => ['dent', 'prefect', 'mcmillan']
@@ -23,7 +23,7 @@ import { vals } from 'zaphod';
 `vals` returns an empty array for values that don't have logical "values".
 
 ```js
-import { keys } from 'zaphod';
+import { keys } from 'tsaphod';
 
 (null)::keys()
 // => []

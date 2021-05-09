@@ -18,7 +18,7 @@ import { flatten } from 'zapod';
 `flatten` will return an empty array when called upon `null` or `undefined`.
 
 ```js
-import { flatten } from 'zaphod';
+import { flatten } from 'tsaphod';
 
 null::flatten()
 // => []

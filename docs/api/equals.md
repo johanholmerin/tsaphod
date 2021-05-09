@@ -18,7 +18,7 @@ The `equals` function compares two values to check for equality. In addition to 
 Comparing objects and arrays.
 
 ```js
-import { equals } from 'zaphod';
+import { equals } from 'tsaphod';
 
 ({ a: 1 })::equals({ a: 1 })
 // => true
@@ -29,7 +29,7 @@ import { equals } from 'zaphod';
 
 Comparing regexes and dates.
 ```js
-import { equals } from 'zaphod';
+import { equals } from 'tsaphod';
 
 /hello/::equals(/hello/)
 // => true
@@ -40,7 +40,7 @@ import { equals } from 'zaphod';
 
 Comparing NaN values.
 ```js
-import { equals } from 'zaphod';
+import { equals } from 'tsaphod';
 
 NaN::equals(NaN)
 // => true

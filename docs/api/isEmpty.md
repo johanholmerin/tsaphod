@@ -14,7 +14,7 @@ The `isEmpty` function can be called on a collection to determine whether it con
 ### Examples
 
 ```js
-import { isEmpty } from 'zaphod';
+import { isEmpty } from 'tsaphod';
 
 [1, 2, 3]::isEmpty()
 // => false

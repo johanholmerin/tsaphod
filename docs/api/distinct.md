@@ -17,7 +17,7 @@ The `distinct` function returns a new array which contains only unique values, b
 ### Examples
 
 ```js
-import { distinct } from 'zaphod';
+import { distinct } from 'tsaphod';
 
 [1, 2, 2, 3, 4, 4]::distinct()
 // => [1, 2, 3, 4]

@@ -185,8 +185,8 @@ function load() {
 
 Unless we want to write our own [revivers](https://facebook.github.io/immutable-js/docs/#/fromJS), we'll need to use collections that can be parsed _and_ serialized, this leaves us with Maps and Lists. No Records, Sets or Stacks.
 
-## Zaphod
-With Zaphod, we can use the same object literals that we used before our adventure into ImmutableJS.
+## Tsaphod
+With Tsaphod, we can use the same object literals that we used before our adventure into ImmutableJS.
 
 ```js
 let game = {
@@ -222,7 +222,7 @@ function load() {
 Let's see how we can rewrite the logic for `addPoint`.
 
 ```js
-import { updateIn } from 'zaphod';
+import { updateIn } from 'tsaphod';
 
 function addPoint(playerName) {
   const playerIndex = game.players.findIndex(
@@ -240,5 +240,5 @@ function addPoint(playerName) {
 
 The `addPoint` function is very similar to the previous version. In fact, there's just one difference. We've used `::` instead of `.` to access the `updateIn` function.
 
-Zaphod functions should be called on regular JavaScript objects, which they all treat as immutable. The function bind operator allows us to keep our data in a logical and readable position.
+Tsaphod functions should be called on regular JavaScript objects, which they all treat as immutable. The function bind operator allows us to keep our data in a logical and readable position.
 

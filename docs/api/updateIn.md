@@ -19,7 +19,7 @@ If the path in `keys` doesn't already exist, then it will be created using objec
 We can use `updateIn` to compute a new nested value inside a collection.
 
 ```js
-import { updateIn } from 'zaphod';
+import { updateIn } from 'tsaphod';
 
 const guide = { earth: { harmless: true } };
 const not = bool => !bool;
@@ -31,7 +31,7 @@ guide::updateIn(['earth', 'harmless'], not)
 It will create the path for us if it doesn't already exist.
 
 ```js
-import { updateIn } from 'zaphod';
+import { updateIn } from 'tsaphod';
 
 const guide = {};
 

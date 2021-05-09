@@ -14,7 +14,7 @@ Under the hood it uses `Object.keys`, but rather than throwing a runtime excepti
 Calling `keys` on an object will return an array of the strings that are used as keys inside that object.
 
 ```js
-import { keys } from 'zaphod';
+import { keys } from 'tsaphod';
 
 ({ a: 'dent', f: 'prefect', t: 'mcmillan' })::keys()
 // => ['a', 'f', 't']
@@ -23,7 +23,7 @@ import { keys } from 'zaphod';
 It's important to notice that arrays store their indexes as strings and `keys` respects this.
 
 ```js
-import { keys } from 'zaphod';
+import { keys } from 'tsaphod';
 
 ['arthur', 'ford', 'trillian']::keys()
 // => ['0', '1', '2']
@@ -32,7 +32,7 @@ import { keys } from 'zaphod';
 Rather than throwing an error, `keys` returns an empty array for values that don't have "keys".
 
 ```js
-import { keys } from 'zaphod';
+import { keys } from 'tsaphod';
 
 (null)::keys()
 // => []

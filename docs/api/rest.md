@@ -12,14 +12,14 @@ Returns the "tail" (or the items after the first) from an array.
 ### Examples
 
 ```js
-import { rest } from 'zaphod';
+import { rest } from 'tsaphod';
 
 [1, 2, 3]::rest()
 // => [2, 3]
 ```
 
 ```js
-import { rest } from 'zaphod';
+import { rest } from 'tsaphod';
 
 []::rest()
 // => []

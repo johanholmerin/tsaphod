@@ -23,7 +23,7 @@ going.down.a.rabbit.hole
 Using `getIn` makes nested property access safer.
 
 ```js
-import { getIn } from 'zaphod';
+import { getIn } from 'tsaphod';
 
 going::getIn(['down', 'a', 'rabbit', 'hole'], 'mad')
 // => 'mad'

@@ -13,7 +13,7 @@ The `takeWhile` function iterates over an array, taking the leading items until 
 ### Examples
 
 ```js
-import { takeWhile } from 'zaphod';
+import { takeWhile } from 'tsaphod';
 
 const isNegative = (x) => x < 0;
 

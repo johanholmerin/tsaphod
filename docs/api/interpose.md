@@ -9,7 +9,7 @@ The `interpose` function returns a new array, with `separator` found between eac
 ## Examples
 
 ```js
-import { interpose } from 'zaphod';
+import { interpose } from 'tsaphod';
 
 [1, 2, 3]::interpose('+')
 // => [1, '+', 2, '+', 3]

@@ -11,7 +11,7 @@ The `reverse` function copies, then reverses an array using [the native `reverse
 ### Examples
 
 ```js
-import { reverse } from 'zaphod';
+import { reverse } from 'tsaphod';
 
 [3, 2, 1]::reverse()
 // => [1, 2, 3]

@@ -13,7 +13,7 @@ The `func` parameter is optional, but when passed it will be forwarded on to `so
 ### Examples
 
 ```js
-import { sort } from 'zaphod';
+import { sort } from 'tsaphod';
 
 [3, 2, 1]::sort()
 // => [1, 2, 3]

@@ -19,7 +19,7 @@ delete foo.bar;
 Use `unset` to remove properties from objects.
 
 ```js
-import { unset } from 'zaphod';
+import { unset } from 'tsaphod';
 
 const foo = { bar: 'baz' };
 
@@ -30,7 +30,7 @@ foo::unset('bar');
 Calling `unset` on an array won't change the length of the array.
 
 ```js
-import { unset } from 'zaphod';
+import { unset } from 'tsaphod';
 
 const xs = [1, 2, 3];
 

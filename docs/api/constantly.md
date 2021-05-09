@@ -12,7 +12,7 @@ The `constantly` function returns a function which always returns `any`, ignorin
 ### Examples
 
 ```js
-import { constantly } from 'zaphod';
+import { constantly } from 'tsaphod';
 
 const alwaysTrue = constantly(true);
 
