@@ -1,5 +1,3 @@
-"use strict";
-
 const docs = 'https://zaphod.surge.sh/api';
 
 function type(any) {

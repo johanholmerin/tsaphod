@@ -5,7 +5,7 @@ import {
   dropWhile, drop, groupBy, interpose, isEmpty, peek, pop,
   reverse, sort, take, takeWhile, zip, constantly, identity,
   inc, dec, range, repeat, repeatedly, transient
-} from './';
+} from './index.js';
 
 test('set', (assert) => {
   assert.plan(6);
