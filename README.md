@@ -21,6 +21,8 @@ Find the [docs][4], [cheatsheet][5] and [rationale][6] at [the website][3].
 npm install tsaphod
 ```
 
+*Note: Tsaphod is an ES module and requires Node >= 12.20*
+
 [1]: https://en.wikipedia.org/wiki/Zaphod_Beeblebrox
 [2]: https://clojure.org/
 [3]: https://tsaphod.surge.sh
