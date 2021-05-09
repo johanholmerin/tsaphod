@@ -24,6 +24,9 @@ jobs:
     - name: Test types
       run: yarn test:types
 
+    - name: Coverage
+      run: yarn cover
+
     - name: Build docs
       run: yarn docs
 

@@ -288,7 +288,7 @@ test('updateIn', (assert) => {
   );
 
   assert.deepEquals(
-    update(({ count: 2 }), 'score', undefined),
+    updateIn(({ count: 2 }), ['score'], undefined),
     ({ count: 2, score: undefined }),
     'should set value to undefined when func is missing'
   );

@@ -23,3 +23,6 @@ jobs:
 
     - name: Test types
       run: yarn test:types
+
+    - name: Coverage
+      run: yarn cover
