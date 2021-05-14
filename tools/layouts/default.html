@@ -117,5 +117,12 @@
 }
 
     </style>
+    <script type="module">
+      import * as modules from 'https://unpkg.com/tsaphod';
+
+      for (const name in modules) {
+        window[name] = modules[name];
+      }
+    </script>
   </body>
 </html>
