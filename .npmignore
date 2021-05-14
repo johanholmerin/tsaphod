@@ -2,3 +2,7 @@ tools
 docs
 _docs
 *.log
+coverage
+.github
+*.spec.js
+*.test-d.ts
